@@ -55,3 +55,109 @@
 - Python 3.11.16 virtual environment is ready for the training.
 - Package management and dependency tracking have been introduced.
 - Python programming concepts have not been started yet; they will begin in the next training session.
+
+## 2026-08-18
+
+### What I Learned
+
+#### Python Fundamentals
+
+- Learned Python data types and how different types represent different kinds of values.
+- Learned variables and variable assignment.
+- Learned Python operators, including arithmetic, comparison, logical, assignment, and other commonly used operators.
+- Learned input and output operations using `input()` and `print()`.
+- Learned control flow using conditional statements such as `if`, `elif`, and `else`.
+- Learned loops and how iteration is used to repeatedly execute code.
+- Learned functions and how functions help organize reusable logic.
+- Learned positional and keyword arguments.
+- Learned `*args` for handling a variable number of positional arguments.
+- Learned `**kwargs` for handling a variable number of keyword arguments.
+- Learned Python variable scope and how local and global variables behave.
+- Learned built-in Python functions and their practical usage.
+- Learned lambda functions for creating small anonymous functions.
+- Learned the use of `break`, `continue`, and `pass` in control flow.
+- Learned the `range()` function for generating sequences of numbers, particularly for iteration.
+
+#### Core Data Structures
+
+- Learned Lists and their use for ordered, mutable collections.
+- Learned Tuples and their use for ordered, immutable collections.
+- Learned Sets and their use for collections of unique elements.
+- Learned Dictionaries and key-value based data storage.
+- Learned list comprehensions for concise list creation and transformation.
+- Learned dictionary comprehensions for concise dictionary creation and transformation.
+- Learned string manipulation techniques.
+- Learned string formatting and how formatted strings can be used to construct readable output.
+
+### Tasks / Activities
+
+- Practiced Python variables, data types, and operators.
+- Implemented input/output examples.
+- Practiced conditional statements and loops.
+- Implemented functions using regular arguments, `*args`, and `**kwargs`.
+- Practiced variable scope.
+- Used built-in functions and lambda functions.
+- Practiced `break`, `continue`, `pass`, and `range()`.
+- Implemented examples using Lists, Tuples, Sets, and Dictionaries.
+- Practiced list and dictionary comprehensions.
+- Practiced string manipulation and formatting.
+
+### Key Takeaways
+
+- Python provides dynamic typing, allowing variables to reference values of different data types without explicitly declaring their type.
+- Control flow determines which parts of a program execute and how many times they execute.
+- Functions provide reusable and organized units of logic.
+- `*args` and `**kwargs` allow functions to accept flexible numbers of positional and keyword arguments.
+- Python's built-in data structures provide different trade-offs depending on whether ordering, mutability, uniqueness, or key-value access is required.
+- Comprehensions provide a concise way to create collections from existing iterables.
+- String formatting provides a structured way to construct readable and dynamic text.
+
+### Progress / Updates
+
+- Completed the core Python fundamentals covered in the current training section.
+- Started working with Python's core built-in data structures.
+- Ready to continue with the remaining Stage 1 Python topics.
+
+## 2026-08-19
+
+### What I Learned
+
+#### Modules and Packages
+
+- Learned how to use Python's built-in `math` module for mathematical operations.
+- Learned how to use the `random` module for generating random values and making random selections.
+- Learned how to use the `os` module for interacting with the operating system and filesystem.
+- Learned how to use the `datetime` module for working with dates and times.
+- Learned how to create custom Python modules and import functionality from them.
+- Learned the basics of organizing reusable code into modules.
+- Learned the `re` (Regular Expression) library for pattern matching and text processing.
+
+#### Error Handling
+
+- Learned how `try-except` blocks handle runtime exceptions.
+- Learned how to catch specific exception types.
+- Learned how to use `raise` to explicitly raise exceptions when a condition is invalid.
+
+### Tasks / Activities
+
+- Practiced importing and using built-in Python modules.
+- Implemented examples using `math`, `random`, `os`, and `datetime`.
+- Created and imported custom Python modules.
+- Practiced regular expressions using the `re` library.
+- Implemented `try-except` blocks for handling exceptions.
+- Practiced raising exceptions using the `raise` statement.
+
+### Key Takeaways
+
+- Modules allow functionality to be organized into reusable Python files.
+- Python's standard library provides many modules for common programming tasks without requiring external packages.
+- Custom modules help separate application logic and improve code organization.
+- Regular expressions provide a way to search, validate, and extract structured information from text.
+- Exception handling allows programs to handle unexpected runtime conditions gracefully.
+- Explicitly raising exceptions allows a program to enforce validation rules and communicate invalid states.
+
+### Progress / Updates
+
+- Completed the Modules and Packages topics for the current Stage 1 training section.
+- Completed the Error Handling topics covering `try-except` and `raise`.
+- Ready to continue with the next Stage 1 topics.
