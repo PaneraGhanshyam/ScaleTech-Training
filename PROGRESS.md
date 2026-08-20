@@ -161,3 +161,54 @@
 - Completed the Modules and Packages topics for the current Stage 1 training section.
 - Completed the Error Handling topics covering `try-except` and `raise`.
 - Ready to continue with the next Stage 1 topics.
+
+## 2026-08-20
+
+### What I Learned
+
+#### File Handling
+
+- Learned basic file handling in Python.
+- Learned how to open, read, write, and append files.
+- Learned different file modes such as `r`, `w`, `a`, and `x`.
+- Learned how to use the `with` statement for safe file handling.
+- Learned how to work with file encodings using UTF-8.
+- Learned how to handle file-related exceptions such as `FileNotFoundError` and `PermissionError`.
+- Learned how to read and write CSV files using Python's built-in `csv` module.
+- Learned `csv.reader()` and `csv.writer()`.
+- Learned `csv.DictReader()` and `csv.DictWriter()` for working with structured CSV data.
+
+#### CLI Calculator
+
+- Started building a basic command-line calculator.
+- Implemented arithmetic operations using separate functions.
+- Added user input and operator selection.
+- Added continuous calculation using a `while` loop.
+- Added error handling using `try-except`.
+- Used `raise ValueError` for division by zero.
+- Used `break` and `continue` to control the calculator loop.
+
+### Tasks / Activities
+
+- Implemented a basic file read/write program.
+- Implemented a CSV read/write program.
+- Created a basic CLI calculator.
+- Added continuous calculation support.
+- Added exception handling to the calculator.
+- Practiced combining previously learned Python concepts into a practical project.
+
+### Key Takeaways
+
+- File handling allows Python programs to persist and retrieve data.
+- The `with` statement provides safer resource management when working with files.
+- The `csv` module should be used instead of manually splitting CSV lines.
+- Exceptions can be raised inside functions and handled at a higher level.
+- Loops, functions, conditions, and exception handling can be combined to build useful CLI applications.
+
+### Progress / Updates
+
+- Completed the basic File Handling topics.
+- Completed the CSV File Handling topics.
+- Started the CLI Calculator project.
+- CLI Calculator currently supports basic arithmetic operations, continuous execution, and error handling.
+- Tomorrow's focus will be the **CLI To-Do List project**, including filesystem-based data storage.
