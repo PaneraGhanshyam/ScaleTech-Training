@@ -212,3 +212,59 @@
 - Started the CLI Calculator project.
 - CLI Calculator currently supports basic arithmetic operations, continuous execution, and error handling.
 - Tomorrow's focus will be the **CLI To-Do List project**, including filesystem-based data storage.
+
+## 2026-08-21
+
+### What I Learned
+
+#### CLI To-Do List
+
+- Built a command-line To-Do List application using Python.
+- Implemented task creation, viewing, updating, completion, and deletion.
+- Used lists and dictionaries to represent and manage task data.
+- Used functions to separate different task operations.
+- Created a custom `todo.py` module for helper functions and application logic.
+- Used `main.py` as the entry point and CLI interface.
+- Implemented persistent task storage using a JSON file.
+- Used the `json` module to read and write task data.
+- Used `pathlib` to manage the application data file path.
+- Used `datetime` to store task creation timestamps.
+- Applied `try-except` and `raise` for input validation and error handling.
+- Practiced separation of concerns by separating the CLI interface from task management logic.
+
+#### Object-Oriented Programming Fundamentals
+
+- Started learning **Classes and Objects**.
+- Learned the purpose of classes as blueprints for creating objects.
+- Learned how objects represent instances of classes.
+- Started understanding **Inheritance** and how classes can reuse and extend functionality from other classes.
+- Started understanding **Polymorphism** and how different objects can provide different implementations of the same interface or method.
+- Started understanding **Encapsulation** and how data and behavior can be organized and controlled within a class.
+
+### Tasks / Activities
+
+- Created the CLI To-Do List project structure.
+- Implemented task CRUD operations.
+- Added JSON-based persistent storage.
+- Separated helper functions into a custom Python module.
+- Practiced importing and using a custom module from `main.py`.
+- Studied the fundamentals of classes and objects.
+- Studied the fundamentals of inheritance, polymorphism, and encapsulation.
+
+### Key Takeaways
+
+- CLI applications can combine multiple Python concepts into a practical project.
+- JSON provides a convenient way to persist structured Python data.
+- Separating application logic into modules makes the code easier to maintain and extend.
+- Classes provide a way to model real-world entities and group related data and behavior.
+- Inheritance allows classes to reuse and extend existing functionality.
+- Polymorphism allows different objects to respond to the same operation in different ways.
+- Encapsulation helps control how an object's internal data and behavior are accessed.
+
+### Progress / Updates
+
+- Completed the CLI To-Do List project with JSON-based persistent storage.
+- Completed the basic implementation of task CRUD operations.
+- Started learning Object-Oriented Programming fundamentals.
+- Covered the fundamentals of Classes, Objects, Inheritance, Polymorphism, and Encapsulation.
+- Ready to continue with practical Object-Oriented Programming concepts and implementation.
