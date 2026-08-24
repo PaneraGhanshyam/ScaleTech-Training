@@ -268,3 +268,54 @@
 - Started learning Object-Oriented Programming fundamentals.
 - Covered the fundamentals of Classes, Objects, Inheritance, Polymorphism, and Encapsulation.
 - Ready to continue with practical Object-Oriented Programming concepts and implementation.
+
+## 2026-08-24
+
+### What I Learned
+
+#### Object-Oriented Programming
+
+- Learned the fundamentals of **Mixins** and how they can provide reusable functionality to classes.
+- Learned **Multiple Inheritance** and how a class can inherit functionality from multiple parent classes.
+- Learned **Special/Magic Methods** and their role in defining how Python objects behave.
+- Learned the `__init__()` magic method for initializing objects.
+- Learned the `__str__()` magic method for defining the human-readable string representation of an object.
+- Learned about other commonly used magic methods and how Python calls them automatically in specific situations.
+- Learned about **Access Modifiers** and Python's approach to public, internal, and name-mangled attributes.
+- Learned about Python's underscore conventions such as `_attribute` and `__attribute`.
+- Learned about **escape characters** and their use in strings.
+
+#### Python Standard Library
+
+- Started learning the `collections` module from Python's standard library.
+- Learned the purpose of `Counter` for counting occurrences of elements.
+- Learned the purpose of `defaultdict` for dictionaries with default values.
+- Learned the purpose of `deque` for efficient insertion and removal from both ends of a sequence.
+
+### Tasks / Activities
+
+- Practiced creating classes using multiple inheritance.
+- Explored the concept of Mixins and reusable class functionality.
+- Implemented and experimented with special methods such as `__init__()` and `__str__()`.
+- Practiced Python's access modifier conventions and name mangling.
+- Practiced using escape characters in strings.
+- Implemented examples using `Counter`.
+- Implemented examples using `defaultdict`.
+- Implemented examples using `deque`.
+
+### Key Takeaways
+
+- Mixins provide a way to add reusable behavior to classes without representing a standalone entity.
+- Multiple inheritance allows a class to inherit behavior from more than one parent class.
+- Magic methods allow Python classes to integrate with built-in language operations and behaviors.
+- Python uses naming conventions and name mangling rather than Java-style strict access modifiers.
+- Escape characters allow special characters and formatting to be represented inside strings.
+- `Counter`, `defaultdict`, and `deque` provide specialized data structures that can simplify common programming tasks.
+
+### Progress / Updates
+
+- Completed the Mixins and Multiple Inheritance topics.
+- Learned commonly used Special/Magic Methods.
+- Learned Python Access Modifiers and escape characters.
+- Started the Python Standard Library `collections` module.
+- Covered `Counter`, `defaultdict`, and `deque`.
