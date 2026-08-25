@@ -319,3 +319,40 @@
 - Learned Python Access Modifiers and escape characters.
 - Started the Python Standard Library `collections` module.
 - Covered `Counter`, `defaultdict`, and `deque`.
+
+## 2026-08-25
+
+### What I Learned
+
+#### Advanced Python Modules
+- Learned `itertools` and how to handle advanced iterators like combinations and permutations.
+- Learned `functools` and its role in higher-order functions and operations.
+- Learned the purpose of `functools.partial` to pre-fill or freeze arguments of a function.
+- Learned the purpose of `functools.reduce` for applying rolling computations to sequences.
+- Learned the purpose of `functools.lru_cache` for memoization and optimizing repetitive function calls.
+
+#### Advanced File Operations
+- Learned how to handle complex data formats beyond standard text and CSV.
+- Learned JSON and XML parsing for structured data exchange.
+- Learned Config File Handling to manage application settings.
+- Learned how to read, write, and manage configuration data using INI and YAML formats.
+
+### Tasks / Activities
+- Practiced generating combinations and permutations using the `itertools` module.
+- Implemented examples using `partial`, `reduce`, and `lru_cache`.
+- Practiced parsing, reading, and writing structured data using JSON and XML files.
+- Implemented configuration file handling by reading and writing INI and YAML files.
+
+### Key Takeaways
+- `itertools` provides memory-efficient, fast tools for creating complex iterators.
+- `functools` offers powerful utilities for functional programming and performance optimization (`lru_cache`).
+- JSON and XML are essential standards for parsing and structuring data across different systems.
+- INI and YAML provide clean, human-readable ways to manage application configurations and settings.
+
+### Progress / Updates
+- Completed the `itertools` (combinations, permutations) and `functools` (`partial`, `reduce`, `lru_cache`) topics.
+- Learned Advanced File Operations.
+- Covered JSON and XML parsing.
+- Covered Config File Handling using INI and YAML.
+
+
