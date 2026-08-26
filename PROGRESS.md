@@ -355,4 +355,40 @@
 - Covered JSON and XML parsing.
 - Covered Config File Handling using INI and YAML.
 
+## 2026-08-26
+
+### What I Learned
+
+#### Databases
+
+- Learned the fundamentals of **SQL** and relational databases.
+- Learned basic SQL concepts for working with structured data.
+- Learned how to create and interact with database tables.
+- Learned basic SQL operations for inserting, retrieving, updating, and deleting data.
+- Learned how to use **SQLite with Python**.
+- Learned how Python can connect to and interact with a SQLite database.
+- Learned how to execute SQL queries from Python.
+- Learned how to create tables and manage database records using Python.
+- Learned the basics of using Python's built-in `sqlite3` module.
+
+### Tasks / Activities
+
+- Practiced basic SQL queries.
+- Created and interacted with SQLite database tables.
+- Connected Python applications to SQLite databases.
+- Executed SQL queries using Python.
+- Practiced inserting, retrieving, updating, and deleting records using Python and SQLite.
+
+### Key Takeaways
+
+- SQL provides a standard way to interact with relational databases.
+- SQLite is a lightweight relational database that does not require a separate database server.
+- Python provides built-in SQLite support through the `sqlite3` module.
+- Python applications can use SQL queries to persist and manage structured data.
+- Database storage provides a more structured and scalable approach to persistent data compared with simple files such as JSON.
+
+### Progress / Updates
+
+- Completed the Introduction to SQL topic.
+- Completed the fundamentals of using SQLite with Python.
 
