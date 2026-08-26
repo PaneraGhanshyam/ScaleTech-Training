@@ -1,0 +1,14 @@
+application:
+  name: ScaleTech Training
+  version: 1.0
+  debug: true
+
+database:
+  host: localhost
+  port: 3306
+  database: training
+
+features:
+  - logging
+  - authentication
+  - caching
