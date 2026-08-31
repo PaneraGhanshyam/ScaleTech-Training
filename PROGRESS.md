@@ -392,3 +392,66 @@
 - Completed the Introduction to SQL topic.
 - Completed the fundamentals of using SQLite with Python.
 
+## 2026-08-31
+
+### What I Learned
+
+#### Working with Databases
+
+- Learned the basics of **SQL** and relational databases.
+- Learned the basic **CRUD operations**: Create, Read, Update, and Delete.
+- Learned how to create database tables using SQL.
+- Learned how to insert, retrieve, update, and delete records.
+- Learned how **SQLite** works as a lightweight relational database.
+- Learned how to use Python's built-in `sqlite3` module.
+- Learned how to connect Python applications to a SQLite database.
+- Learned how to create tables and execute SQL queries from Python.
+- Learned how to use cursors for executing SQL statements.
+- Learned how to retrieve query results using `fetchone()` and `fetchall()`.
+- Learned how to use `commit()` to save database changes.
+- Learned the importance of **parameterized SQL queries** using `?` placeholders.
+
+#### Web Scraping
+
+- Learned the basics of the `requests` library for making HTTP requests.
+- Learned how to inspect HTTP status codes, headers, and response content using `requests`.
+- Learned how to process JSON responses using `response.json()`.
+- Learned the basics of **BeautifulSoup** for parsing HTML.
+- Learned how to find and extract HTML elements using `find()` and `find_all()`.
+- Learned the difference between downloading webpage content with `requests` and parsing it with BeautifulSoup.
+- Learned the basics of **Selenium** for browser automation.
+- Learned how to open webpages using Selenium WebDriver.
+- Learned how to find webpage elements using Selenium locators.
+- Learned how to retrieve text from browser elements.
+- Learned how to close the browser using `driver.quit()`.
+
+### Tasks / Activities
+
+- Implemented a small SQLite database program using Python.
+- Created a SQLite table and performed basic CRUD operations.
+- Practiced executing SQL queries through Python's `sqlite3` module.
+- Implemented a basic `requests` program using a public API.
+- Implemented a basic BeautifulSoup program to parse webpage HTML.
+- Implemented a basic Selenium program for browser automation.
+- Practiced the basic differences and use cases of `requests`, BeautifulSoup, and Selenium.
+
+### Key Takeaways
+
+- SQL is used to communicate with relational databases.
+- SQLite provides a simple database solution without requiring a separate database server.
+- Python can interact directly with SQLite using the built-in `sqlite3` module.
+- `requests` is suitable for making HTTP requests and retrieving web resources.
+- BeautifulSoup is useful for parsing and extracting information from HTML.
+- Selenium is useful when browser interaction and automation are required.
+- `requests` and BeautifulSoup are commonly used together for static webpage scraping.
+- Selenium controls an actual browser and is useful for interactive or dynamically rendered webpages.
+- Parameterized SQL queries should be used when passing external values into SQL statements.
+
+### Progress / Updates
+
+- Completed the **Introduction to SQL** topic.
+- Completed the basics of **SQLite with Python**.
+- Completed the basic implementation of the `requests` library.
+- Completed the basic implementation of **BeautifulSoup**.
+- Completed the basic implementation of **Selenium**.
+- Practiced combining previously learned Python concepts with databases and web-related libraries.
