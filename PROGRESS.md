@@ -455,3 +455,47 @@
 - Completed the basic implementation of **BeautifulSoup**.
 - Completed the basic implementation of **Selenium**.
 - Practiced combining previously learned Python concepts with databases and web-related libraries.
+
+## 2026-09-02
+
+### What I Learned
+
+#### Unit Testing
+
+- Learned the purpose of **unit testing** and automated testing.
+- Learned how testing helps detect **regressions** after code changes.
+- Learned the basics of `unittest` and `pytest`.
+- Learned `unittest.TestCase`, assertions, and `unittest.main()`.
+- Learned how `__name__ == "__main__"` works.
+- Learned how the `unittest` framework automatically creates test objects and runs test methods.
+- Learned **mocking and patching** using `unittest.mock`.
+- Learned how to test API-related code without making real network requests.
+- Learned basic **debugger** features such as breakpoints and step execution.
+
+### Tasks / Activities
+
+- Implemented and tested a calculator using `unittest`.
+- Implemented the same tests using `pytest`.
+- Implemented API testing using `Mock` and `patch()`.
+- Practiced debugging with breakpoints and variable inspection.
+
+### Challenges
+
+- Understanding inheritance with `unittest.TestCase`.
+- Understanding automatic test object creation and test execution.
+- Understanding the difference between `unittest` and `pytest`.
+- Understanding how mocking and patching replace real dependencies during tests.
+
+### Key Takeaways
+
+- Automated testing saves time as applications grow.
+- Tests help ensure existing functionality continues to behave as expected.
+- `pytest` is simpler to write, while `unittest` is important to understand.
+- Mocking isolates code from external dependencies.
+- Debugging helps inspect program execution step by step.
+
+### Progress / Updates
+
+- Completed the basics of **Unit Testing**.
+- Practiced **`unittest`**, **`pytest`**, **mocking**, **patching**, and **debugging**.
+- Completed practical implementations for all major topics covered today.
