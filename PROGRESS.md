@@ -499,3 +499,49 @@
 - Completed the basics of **Unit Testing**.
 - Practiced **`unittest`**, **`pytest`**, **mocking**, **patching**, and **debugging**.
 - Completed practical implementations for all major topics covered today.
+
+## 2026-09-03
+
+### What I Learned
+
+#### Advanced Python Concepts
+
+- Learned the basics of **Decorators** for adding reusable behavior to functions.
+- Learned **Context Managers** and the `with` statement for resource management and automatic cleanup.
+- Learned **AsyncIO** for handling multiple I/O-bound tasks efficiently.
+- Learned **Generators** and `yield` for producing values one at a time.
+- Learned **Coroutines** using `async` and `await` for asynchronous programming.
+- Learned the difference between **Multithreading** and **Multiprocessing**.
+- Learned that multithreading is useful for **I/O-bound tasks**, while multiprocessing is useful for **CPU-bound tasks**.
+
+### Tasks / Activities
+
+- Implemented a decorator to measure function execution time.
+- Implemented a custom context manager using `__enter__()` and `__exit__()`.
+- Implemented asynchronous tasks using `asyncio`, `async`, `await`, and `asyncio.gather()`.
+- Implemented a generator using `yield`.
+- Implemented coroutines and practiced running them concurrently.
+- Implemented basic multithreading using `threading.Thread`.
+- Implemented basic multiprocessing using `multiprocessing.Process`.
+
+### Challenges
+
+- Understanding how decorators wrap and modify functions.
+- Understanding how context managers handle setup and cleanup automatically.
+- Understanding the difference between `async`, `await`, generators, and coroutines.
+- Understanding when to use threads versus processes.
+
+### Key Takeaways
+
+- Decorators provide reusable behavior around functions.
+- Context managers make resource handling safer and cleaner.
+- AsyncIO is useful for concurrent I/O-bound operations.
+- Generators help process large data efficiently with less memory.
+- Coroutines allow asynchronous tasks to pause and resume.
+- Multithreading is suitable for I/O-bound work, while multiprocessing is better suited for CPU-bound work.
+- These concepts can help improve performance and resource usage in larger applications.
+
+### Progress / Updates
+
+- Completed the basics of **Decorators**, **Context Managers**, **AsyncIO**, **Generators**, **Coroutines**, **Multithreading**, and **Multiprocessing**.
+- Completed practical implementations for all major topics covered today.
