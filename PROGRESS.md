@@ -1,5 +1,45 @@
 # Training Progress
 
+## 2026-09-08
+
+### What I Learned
+
+#### Logging and Debugging
+
+- Learned the basics of Python's **`logging`** module.
+- Learned logging levels: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`.
+- Learned how to write logs to a file with timestamps and log levels.
+- Learned how `logging.exception()` records errors with traceback information.
+- Learned the basics of debugging using the **Python debugger in VSCodium**.
+- Learned how to use breakpoints and step through code.
+- Learned the basic debugger controls: Continue, Step Over, Step Into, and Step Out.
+
+### Tasks / Activities
+
+- Implemented a logging program with different log levels.
+- Created an `app.log` file to record application events and errors.
+- Implemented error logging using `logging.exception()`.
+- Practiced debugging a Python program using breakpoints and variable inspection.
+
+### Challenges
+
+- Understanding the difference between `print()` and proper logging.
+- Understanding when to use different logging levels.
+- Practicing step-by-step debugging and inspecting variable values.
+
+### Key Takeaways
+
+- **Logging** records what is happening in an application.
+- **Debugging** helps find where and why unexpected behavior occurs.
+- Logging is useful for tracking application behavior and errors.
+- Debuggers are useful for inspecting program execution and variable states.
+
+### Progress / Updates
+
+- Completed the basics of **Python Logging and Debugging**.
+- Practiced using the **`logging` module** and Python debugger.
+- Completed practical implementations for logging, error tracking, breakpoints, and step-by-step debugging.
+
 ## 2026-09-07
 
 ### What I Learned
