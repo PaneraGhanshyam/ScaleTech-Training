@@ -1,5 +1,52 @@
 # Training Progress
 
+## 2026-09-10
+
+### What I Learned
+
+#### Pandas Project
+
+- Implemented a small **Pandas data analysis project** using a CSV dataset.
+- Learned to load data using `pd.read_csv()`.
+- Practiced DataFrame inspection, filtering, sorting, grouping, and basic analysis.
+- Exported processed results to a CSV file.
+
+#### Django Basics
+
+- Installed **Django** inside the Python 3.13 virtual environment.
+- Created the first Django project and explored its basic file structure.
+- Learned the difference between a **Django project** and a **Django app**.
+- Learned the basics of **MVT (Model-View-Template)** architecture.
+- Understood the basic request flow between URLs, Views, Models, Templates, and the database.
+
+### Tasks / Activities
+
+- Completed the Pandas dataset analysis project.
+- Installed Django and verified the installation.
+- Created and ran a basic Django project.
+- Explored the Django project structure and important files such as `manage.py`, `settings.py`, and `urls.py`.
+- Practiced understanding the MVT architecture.
+
+### Challenges
+
+- Understanding Django's project structure and the role of different files.
+- Understanding how MVT differs from the architecture of frameworks such as NestJS and Next.js.
+
+### Key Takeaways
+
+- Pandas provides useful tools for processing and analyzing structured data.
+- Django is a Python web framework for building web applications.
+- MVT separates data, application logic, and presentation.
+- Django projects are organized into reusable applications.
+- `manage.py` is used to manage and run Django projects.
+
+### Progress / Updates
+
+- Completed the practical **Pandas** task.
+- Installed and configured **Django** in the virtual environment.
+- Created the first Django project.
+- Learned the Django project structure and basics of **MVT architecture**.
+
 ## 2026-09-08
 
 ### What I Learned
