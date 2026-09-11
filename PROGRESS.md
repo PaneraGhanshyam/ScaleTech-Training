@@ -1,5 +1,52 @@
 # Training Progress
 
+## 2026-09-11
+
+### What I Learned
+
+#### Django Fundamentals
+
+- Learned the purpose of `manage.py`, `settings.py`, and `urls.py`.
+- Learned the basics of **Models, Views, and Templates**.
+- Learned **MVT (Model-View-Template)** architecture and request flow.
+- Learned the difference between **Function-Based Views (FBV)** and **Class-Based Views (CBV)**.
+- Learned how Django models interact with the database through the **Django ORM**.
+
+### Tasks / Activities
+
+- Created a `users` Django app.
+- Created a `UserProfile` model with basic fields.
+- Created and applied database migrations.
+- Implemented a Function-Based View.
+- Implemented a Class-Based View using `ListView`.
+- Configured URL routing using `urls.py`.
+- Created a Django template and displayed database data.
+- Used the Django shell to create and work with model objects.
+
+### Challenges
+
+- Understanding the Django project and app structure.
+- Understanding the MVT request flow.
+- Understanding the difference between FBVs and CBVs.
+- Understanding how models connect Django code with the database.
+
+### Key Takeaways
+
+- `manage.py` is used to manage Django projects.
+- `settings.py` contains project configuration.
+- `urls.py` maps URLs to views.
+- **Model** handles data and database interaction.
+- **View** handles request/application logic.
+- **Template** handles presentation.
+- FBVs use functions, while CBVs use classes and reusable Django functionality.
+
+### Progress / Updates
+
+- Completed the basics of **Django Models, Views, and Templates**.
+- Practiced **MVT architecture** and URL routing.
+- Implemented both **Function-Based Views and Class-Based Views**.
+- Successfully connected a Django model to a template and displayed database data.
+
 ## 2026-09-10
 
 ### What I Learned
