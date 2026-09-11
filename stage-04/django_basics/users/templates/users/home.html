@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User App</title>
+</head>
+<body>
+
+    <h1>Users</h1>
+
+    {% for user in users %}
+        <p>
+            Name: {{ user.name }} |
+            Email: {{ user.email }} |
+            Age: {{ user.age }}
+        </p>
+    {% empty %}
+        <p>No users found.</p>
+    {% endfor %}
+
+</body>
+</html>
