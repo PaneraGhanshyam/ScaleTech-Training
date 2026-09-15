@@ -1,5 +1,61 @@
 # Training Progress
 
+## 2026-09-15
+
+### What I Learned
+
+#### URL Routing
+
+- Learned how Django maps URLs to views using `urls.py`.
+- Learned how to use `include()` to manage app-level URL routes.
+- Learned how to define named URL patterns.
+
+#### Static Files
+
+- Learned how Django handles **static files** such as CSS, JavaScript, and images.
+- Learned how to use the `static/` directory and `{% load static %}` in templates.
+- Learned how `STATIC_URL` is used for serving static files during development.
+
+#### Django Test Cases
+
+- Learned the basics of Django **TestCase**.
+- Learned how to create test cases for Django models and application behavior.
+- Learned how to run Django tests using:
+
+```bash
+python manage.py test
+```
+
+### Tasks / Activities
+
+- Configured app-level URL routing using `include()`.
+- Created and connected a `users/urls.py` file.
+- Added CSS static files to the Django project.
+- Connected static CSS to the Django template.
+- Implemented a basic Django `TestCase`.
+- Ran the test suite using Django's test runner.
+
+### Challenges
+
+- Understanding project-level and app-level URL routing.
+- Understanding how Django locates and serves static files.
+- Understanding how Django test cases work with models.
+
+### Key Takeaways
+
+- `urls.py` connects URLs to views.
+- `include()` keeps application routes organized.
+- Static files are used for CSS, JavaScript, and images.
+- Django `TestCase` provides a structured way to test application behavior.
+- `python manage.py test` runs the Django test suite.
+
+### Progress / Updates
+
+- Completed **URL Routing**.
+- Completed **Static Files** setup.
+- Completed the basics of **Django Test Cases**.
+- Successfully implemented and tested these concepts in the existing Django project.
+
 ## 2026-09-11
 
 ### What I Learned
