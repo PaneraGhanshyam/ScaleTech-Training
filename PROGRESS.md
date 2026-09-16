@@ -1,5 +1,80 @@
 # Training Progress
 
+## 2026-09-16
+
+### What I Learned
+
+#### Django Test Cases
+
+- Learned the basics of Django **TestCase**.
+- Learned how Django creates a separate test database for testing.
+- Learned how to test models and application behavior.
+
+#### Django ORM
+
+- Learned the basics of **Django ORM** for interacting with databases using Python.
+- Learned how Django models represent database tables.
+- Learned how the ORM translates Python queries into database operations.
+
+#### QuerySets and Managers
+
+- Learned how to use **QuerySets** with `all()`, `filter()`, `get()`, `exclude()`, and `order_by()`.
+- Learned that `objects` is Django's default **Manager**.
+- Learned how custom managers can contain reusable query logic.
+
+#### Migrations
+
+- Learned the difference between `makemigrations` and `migrate`.
+- Learned how migrations track and apply changes to the database schema.
+- Learned how migrations are handled differently in development and production.
+
+#### Relationships
+
+- Learned **One-to-One** relationships using `OneToOneField`.
+- Learned **Many-to-One** relationships using `ForeignKey`.
+- Learned **Many-to-Many** relationships using `ManyToManyField`.
+- Understood how relationships are represented in the database.
+
+#### Model Methods
+
+- Learned how to define custom methods inside Django models.
+- Practiced adding behavior to models through methods such as `is_adult()` and `greeting()`.
+
+### Tasks / Activities
+
+- Created a separate Django ORM project.
+- Created `Student`, `Course`, and `StudentProfile` models.
+- Implemented QuerySets and a custom Manager.
+- Created and applied migrations.
+- Implemented One-to-One, Many-to-One, and Many-to-Many relationships.
+- Implemented and tested custom model methods.
+- Used the Django shell to practice ORM queries and relationships.
+- Created Django test cases for the implemented models and relationships.
+
+### Challenges
+
+- Understanding how Django ORM maps Python models to database tables.
+- Understanding relationships and how foreign keys and many-to-many relationships work.
+- Understanding the difference between Managers and QuerySets.
+- Understanding how migrations update an existing database.
+
+### Key Takeaways
+
+- Django ORM allows database operations using Python instead of writing SQL for every query.
+- Managers provide the entry point for database operations, while QuerySets represent query results.
+- Migrations provide a controlled way to evolve the database schema.
+- `OneToOneField`, `ForeignKey`, and `ManyToManyField` represent different database relationships.
+- Model methods allow models to contain behavior related to their data.
+- Django shell is useful for directly experimenting with ORM operations.
+
+### Progress / Updates
+
+- Completed **Django Test Cases**.
+- Completed the basics of **Django ORM**.
+- Practiced **QuerySets, Managers, and Migrations**.
+- Implemented **One-to-One, Many-to-One, and Many-to-Many** relationships.
+- Practiced **Model Methods** and tested the implemented ORM functionality.
+
 ## 2026-09-15
 
 ### What I Learned
