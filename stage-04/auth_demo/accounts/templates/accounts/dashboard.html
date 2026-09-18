@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <p>Department: {{ user.department }}</p>
+
+    <p>
+        Groups:
+        {% for group in user.groups.all %}
+            {{ group.name }}
+        {% endfor %}
+    </p>
+
+    <a href="{% url 'document-list' %}">Documents</a>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
