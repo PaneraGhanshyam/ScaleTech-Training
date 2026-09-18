@@ -1,5 +1,47 @@
 # Training Progress
 
+## 2026-09-18
+
+### What I Learned
+
+#### Authentication and Authorization
+
+- Learned the difference between authentication (who the user is) and authorization (what the user is allowed to do).
+- Learned Django's built-in authentication system, including users, login, logout, sessions, `request.user`, and `login_required`.
+- Learned how to create and use a custom user model with `AbstractUser` and configure `AUTH_USER_MODEL`.
+- Learned Role-Based Access Control (RBAC) using Django Groups and Permissions.
+- Learned how users receive permissions through roles such as Viewer and Editor.
+
+### Tasks / Activities
+
+- Created a new Django project `auth_demo` with `accounts` and `documents` apps.
+- Implemented custom user registration with a `department` field.
+- Implemented registration, login, logout, and protected dashboard functionality.
+- Created a `Document` model using the custom user model.
+- Created Viewer and Editor roles with different document permissions.
+- Protected document views using `login_required` and `permission_required`.
+- Used Django templates to display authenticated user information and permission-based UI.
+
+### Automated Testing
+
+- Implemented Django automated tests for user creation, registration, login, logout/authentication flow, dashboard protection, and RBAC permissions.
+- Used Django's test client, `force_login()`, assertions, temporary test database, Groups, and Permissions in tests.
+- Debugged URL routing and missing template issues found by the test suite.
+- Final test result: **15 tests passed, 0 failures, 0 errors**.
+
+### Key Takeaways
+
+- Authentication answers **WHO are you?**; authorization answers **WHAT can you do?**.
+- Django Groups can be used as roles, while Permissions control specific actions.
+- Server-side permission checks are required for security; hiding UI elements alone is not enough.
+- Automated testing helps verify authentication and authorization behavior and quickly expose routing or template problems.
+
+### Progress / Updates
+
+- Completed the Authentication and Authorization section with a working practical project and automated test coverage.
+- Plan to spend the next few days revising Django and advanced Python concepts repeatedly through practical project implementation.
+
+
 ## 2026-09-17
 
 ### What I Learned
