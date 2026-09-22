@@ -1,0 +1,1040 @@
+WEEK 1 — WEB + NETWORKING FUNDAMENTALS
+Day 1 Practical Lab
+Topics:
+1. Client–Server Model
+2. IP Addresses
+3. Ports
+4. TCP / UDP
+5. DNS
+
+Goal:
+Run each command, understand what the output means, and paste the command output
+under the matching section. Do not just run all commands at once. Run one command,
+study it, then record the result.
+
+IMPORTANT:
+- These commands are for Fedora/Linux.
+- Commands such as `ping`, `dig`, `ss`, `ip`, `curl`, and `resolvectl` may show
+  different values on different machines or networks. Record YOUR output.
+- For commands that may not exist, note the error and continue with the alternative.
+- Never paste passwords, API keys, tokens, or other secrets into this file.
+
+============================================================
+1. CLIENT–SERVER MODEL
+============================================================
+
+CONCEPT
+A client requests a service/resource and a server provides/processes it.
+
+Basic flow:
+
+    Client → Request → Server
+    Client ← Response ← Server
+
+The browser is a client.
+Django's development server is a server.
+`curl` is also a client.
+
+------------------------------------------------------------
+1.1 Start a simple local server
+------------------------------------------------------------
+
+COMMAND:
+
+    python -m http.server 8000
+
+WHAT IT DOES:
+Starts a simple HTTP server on your machine on TCP port 8000.
+
+WHAT TO OBSERVE:
+- The server is listening for incoming HTTP connections.
+- The terminal should show a message similar to:
+  "Serving HTTP on ... port 8000"
+
+Do not close this terminal while testing.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+----- OUTPUT END -----
+
+------------------------------------------------------------
+1.2 Connect to the server using curl
+------------------------------------------------------------
+
+Open a second terminal.
+
+COMMAND:
+
+    curl http://127.0.0.1:8000/
+
+WHAT IT DOES:
+Acts as a client and sends an HTTP request to your local server.
+
+WHAT TO OBSERVE:
+- You should receive an HTML directory listing or page.
+- `curl` is the client.
+- `python -m http.server` is the server.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+ghanshyam@localhost:~$ curl http://127.0.0.1:8000/
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+:root {
+color-scheme: light dark;
+}
+</style>
+<title>Directory listing for /</title>
+</head>
+<body>
+<h1>Directory listing for /</h1>
+<hr>
+<ul>
+<li><a href=".bash_history">.bash_history</a></li>
+<li><a href=".bash_logout">.bash_logout</a></li>
+<li><a href=".bash_profile">.bash_profile</a></li>
+<li><a href=".bashrc">.bashrc</a></li>
+<li><a href=".cache/">.cache/</a></li>
+<li><a href=".config/">.config/</a></li>
+<li><a href=".continue/">.continue/</a></li>
+<li><a href=".dotnet/">.dotnet/</a></li>
+<li><a href=".gitconfig">.gitconfig</a></li>
+<li><a href=".gtkrc-2.0">.gtkrc-2.0</a></li>
+<li><a href=".ipython/">.ipython/</a></li>
+<li><a href=".local/">.local/</a></li>
+<li><a href=".net/">.net/</a></li>
+<li><a href=".nuget/">.nuget/</a></li>
+<li><a href=".nv/">.nv/</a></li>
+<li><a href=".nvidia-settings-rc">.nvidia-settings-rc</a></li>
+<li><a href=".pki/">.pki/</a></li>
+<li><a href=".python_history">.python_history</a></li>
+<li><a href=".ssh/">.ssh/</a></li>
+<li><a href=".steam/">.steam/</a></li>
+<li><a href=".steampath">.steampath@</a></li>
+<li><a href=".steampid">.steampid@</a></li>
+<li><a href=".var/">.var/</a></li>
+<li><a href=".vscode-oss/">.vscode-oss/</a></li>
+<li><a href=".vscode-oss-shared/">.vscode-oss-shared/</a></li>
+<li><a href=".wine/">.wine/</a></li>
+<li><a href="Desktop/">Desktop/</a></li>
+<li><a href="Documents/">Documents/</a></li>
+<li><a href="Downloads/">Downloads/</a></li>
+<li><a href="Games/">Games/</a></li>
+<li><a href="Music/">Music/</a></li>
+<li><a href="Pictures/">Pictures/</a></li>
+<li><a href="Projects/">Projects/</a></li>
+<li><a href="Public/">Public/</a></li>
+<li><a href="Softwares/">Softwares/</a></li>
+<li><a href="Templates/">Templates/</a></li>
+<li><a href="Videos/">Videos/</a></li>
+<li><a href="Windows%20backup/">Windows backup/</a></li>
+</ul>
+<hr>
+</body>
+</html>
+----- OUTPUT END -----
+
+------------------------------------------------------------
+1.3 See the HTTP headers
+------------------------------------------------------------
+
+COMMAND:
+
+    curl -I http://127.0.0.1:8000/
+
+WHAT IT DOES:
+Requests response headers.
+
+WHAT TO OBSERVE:
+Look for:
+- HTTP status code
+- Content-Type
+- Content-Length (if present)
+- Server
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+ghanshyam@localhost:~$ curl -I http://127.0.0.1:8000/
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.14.7
+Date: Tue, 22 Sep 2026 16:38:45 GMT
+Content-type: text/html; charset=utf-8
+Content-Length: 1908
+----- OUTPUT END -----
+
+------------------------------------------------------------
+1.4 Repeat the same idea with Django
+------------------------------------------------------------
+
+From a Django project:
+
+    python manage.py runserver
+
+Then in another terminal:
+
+    curl http://127.0.0.1:8000/
+
+Then:
+
+    curl -I http://127.0.0.1:8000/
+
+WHAT TO UNDERSTAND:
+    Browser/curl
+         ↓
+    127.0.0.1:8000
+         ↓
+    Django development server
+         ↓
+    Django response
+
+PASTE OUTPUT:
+
+Django runserver output:
+
+----- OUTPUT START -----
+(.venv) ghanshyam@localhost:~/Projects/ScaleTech-Training/stage-04/django_basics$ python manage.py runserver 3000
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 22, 2026 - 16:45:46
+Django version 6.1.1, using settings 'django_basics.settings'
+Starting WSGI development server at http://127.0.0.1:3000/
+Quit the server with CONTROL-C.
+----- OUTPUT END -----
+
+curl output:
+
+----- OUTPUT START -----
+ghanshyam@localhost:~$ curl -i http://127.0.0.1:3000/feedback/
+HTTP/1.1 200 OK
+Date: Tue, 22 Sep 2026 16:47:59 GMT
+Server: WSGIServer/0.2 CPython/3.13.15
+Content-Type: text/html; charset=utf-8
+X-Frame-Options: DENY
+Vary: Cookie
+Content-Length: 793
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+Set-Cookie: csrftoken=Wj94zulLHJe6UOUr3nDLzlukJqNVOZ1y; expires=Tue, 21 Sep 2027 16:47:59 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+</head>
+<body>
+
+    <h1>Feedback Form</h1>
+
+    <form method="post">
+
+        <input type="hidden" name="csrfmiddlewaretoken" value="ggb9qGMVaudy9hGvjrMl08DFCbq1QBc72pa3P0XwH3huTVqMcEfWpjXPbr3Muq3v">
+
+        <p>
+    <label for="id_name">Name:</label>
+    <input type="text" name="name" maxlength="100" required id="id_name">
+
+
+  </p>
+
+
+  <p>
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" maxlength="320" required id="id_email">
+
+
+  </p>
+
+
+  <p>
+    <label for="id_message">Message:</label>
+    <textarea name="message" cols="40" rows="10" required id="id_message">
+</textarea>
+
+
+
+
+  </p>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</body>
+----- OUTPUT END -----
+
+============================================================
+2. IP ADDRESSES
+============================================================
+
+CONCEPT
+An IP address is used to identify a network endpoint/address for IP communication.
+
+Examples:
+- 127.0.0.1  → IPv4 loopback
+- 192.168.x.x → common private IPv4 range
+- IPv6 addresses look different, for example: 2001:db8::1
+
+Remember:
+    IP address → network destination/address
+
+------------------------------------------------------------
+2.1 View all network interfaces and addresses
+------------------------------------------------------------
+
+COMMAND:
+
+    ip addr
+
+SHORT VERSION:
+
+    ip a
+
+WHAT TO OBSERVE:
+Find:
+- `lo` → loopback interface
+- Your Wi-Fi interface, often starting with `wl...`
+- `inet` → IPv4 address
+- `inet6` → IPv6 address
+- `state UP` / `state DOWN`
+
+QUESTIONS:
+1. What is the name of your Wi-Fi interface?
+2. What IPv4 address does it have?
+3. What IPv4 address does `lo` have?
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+2.2 Show only the machine's assigned IP addresses
+------------------------------------------------------------
+
+COMMAND:
+
+    hostname -I
+
+WHAT TO OBSERVE:
+This usually prints the IP addresses assigned to the host.
+
+Compare this with the addresses you saw in `ip addr`.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+2.3 Examine loopback
+------------------------------------------------------------
+
+COMMAND:
+
+    ping -c 4 127.0.0.1
+
+WHAT IT SHOWS:
+Tests communication with your own machine through the loopback interface.
+
+WHAT TO UNDERSTAND:
+    127.0.0.1
+        ↓
+    this same machine
+
+IMPORTANT:
+Ping uses ICMP, not HTTP and not TCP/UDP.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+2.4 Test a domain by name
+------------------------------------------------------------
+
+COMMAND:
+
+    ping -c 4 google.com
+
+WHAT TO OBSERVE:
+- The command first needs to resolve `google.com` to an IP address.
+- You should see an IP address in the output.
+- Then ICMP packets are sent to that destination.
+
+IMPORTANT:
+This demonstrates name resolution + IP reachability. It does NOT test an HTTP server.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+============================================================
+3. PORTS
+============================================================
+
+CONCEPT
+An IP address identifies the network destination.
+A port identifies a service/application endpoint on that host.
+
+Example:
+
+    127.0.0.1:8000
+    IP       : port
+
+Think:
+    IP   → where?
+    Port → which service?
+
+------------------------------------------------------------
+3.1 View listening TCP and UDP ports
+------------------------------------------------------------
+
+COMMAND:
+
+    ss -tuln
+
+OPTIONS:
+    -t  TCP
+    -u  UDP
+    -l  listening sockets
+    -n  numeric addresses/ports
+
+WHAT TO OBSERVE:
+Look for lines such as:
+
+    127.0.0.1:8000
+
+This means something is listening on TCP port 8000 on the loopback interface.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+3.2 Show listening TCP ports with process information
+------------------------------------------------------------
+
+COMMAND:
+
+    ss -ltnp
+
+WHAT TO OBSERVE:
+- Listening TCP sockets
+- Local address and port
+- Process information when permitted
+
+If some process details are hidden because of permissions, that is normal.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+3.3 Start Django and observe the port
+------------------------------------------------------------
+
+Terminal 1:
+
+    python manage.py runserver
+
+Terminal 2:
+
+    ss -ltn | grep 8000
+
+WHAT TO OBSERVE:
+You should see a listening TCP socket for port 8000.
+
+This connects:
+    Django process
+         ↓
+    TCP listening socket
+         ↓
+    port 8000
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+============================================================
+4. TCP / UDP
+============================================================
+
+CONCEPT
+TCP and UDP are transport-layer protocols.
+
+TCP:
+- Connection-oriented
+- Reliable
+- Ordered byte stream
+- Retransmission is handled by TCP
+
+UDP:
+- Connectionless datagrams
+- No delivery guarantee from UDP itself
+- No ordering guarantee from UDP itself
+- Lower transport overhead
+
+Simple memory rule:
+
+    TCP → reliable ordered transport
+    UDP → lightweight datagram transport
+
+------------------------------------------------------------
+4.1 Observe TCP listening sockets
+------------------------------------------------------------
+
+COMMAND:
+
+    ss -ltn
+
+WHAT TO OBSERVE:
+Look for `LISTEN` entries.
+
+A TCP server listens for incoming connections.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+4.2 Observe UDP listening sockets
+------------------------------------------------------------
+
+COMMAND:
+
+    ss -lun
+
+WHAT TO OBSERVE:
+Look for UDP sockets.
+
+Important:
+UDP does not have the same TCP `LISTEN` state because UDP is connectionless.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+4.3 Optional: Test a local TCP connection with netcat
+------------------------------------------------------------
+
+Only do this if `nc` (netcat) is installed.
+
+Terminal 1:
+
+    nc -l 9000
+
+Terminal 2:
+
+    nc 127.0.0.1 9000
+
+Type text in either terminal and press Enter.
+
+WHAT TO OBSERVE:
+- One terminal acts as a TCP listener.
+- The other acts as a TCP client.
+- Data typed on one side appears on the other side.
+
+Then in another terminal:
+
+    ss -tnp | grep 9000
+
+WHAT TO UNDERSTAND:
+    TCP client
+        ↓
+    TCP connection
+        ↓
+    TCP server
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+4.4 Optional: UDP with netcat
+------------------------------------------------------------
+
+Only do this if your installed `nc` supports UDP mode.
+
+Terminal 1:
+
+    nc -u -l 9001
+
+Terminal 2:
+
+    nc -u 127.0.0.1 9001
+
+Type text and press Enter.
+
+WHAT TO UNDERSTAND:
+UDP sends datagrams and does not establish a TCP-style connection.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+============================================================
+5. DNS — DOMAIN NAME SYSTEM
+============================================================
+
+CONCEPT
+DNS maps domain names to IP addresses and provides other DNS information.
+
+Basic idea:
+
+    google.com
+         ↓
+        DNS
+         ↓
+    IP address
+
+DNS is distributed and hierarchical.
+
+------------------------------------------------------------
+5.1 Resolve a hostname
+------------------------------------------------------------
+
+COMMAND:
+
+    getent hosts google.com
+
+WHAT TO OBSERVE:
+- The resolved IP address
+- The hostname returned
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+5.2 Query DNS directly with dig
+------------------------------------------------------------
+
+COMMAND:
+
+    dig google.com
+
+If `dig` is not installed, install the package that provides it
+or use the alternatives below.
+
+WHAT TO OBSERVE:
+Focus especially on:
+- QUESTION SECTION
+- ANSWER SECTION
+- The returned record
+- Query time
+- SERVER
+
+Do not try to understand every field yet.
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+5.3 Query only an IPv4 address (A record)
+------------------------------------------------------------
+
+COMMAND:
+
+    dig A google.com
+
+CONCEPT:
+    A record → IPv4 address
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+5.4 Query IPv6 address (AAAA record)
+------------------------------------------------------------
+
+COMMAND:
+
+    dig AAAA google.com
+
+CONCEPT:
+    AAAA record → IPv6 address
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+5.5 See the DNS resolver configured on the system
+------------------------------------------------------------
+
+COMMAND:
+
+    resolvectl status
+
+WHAT TO OBSERVE:
+Look for:
+- DNS Servers
+- DNS Domain
+- Network interface information
+
+If `resolvectl` is unavailable, try:
+
+    cat /etc/resolv.conf
+
+PASTE OUTPUT:
+
+resolvectl status:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+OR /etc/resolv.conf:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+------------------------------------------------------------
+5.6 Reverse DNS lookup
+------------------------------------------------------------
+
+First resolve a domain:
+
+    dig A google.com
+
+Take one IPv4 address from the ANSWER SECTION.
+
+Then run:
+
+    dig -x <IP_ADDRESS>
+
+Example format only:
+
+    dig -x 192.0.2.1
+
+Do NOT use the example address unless it is actually yours.
+
+CONCEPT:
+Forward lookup:
+    name → IP
+
+Reverse lookup:
+    IP → name (when a PTR record exists)
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+============================================================
+6. CONNECT ALL THREE TOPICS
+============================================================
+
+Now run:
+
+    curl -I https://example.com
+
+Then think through the following sequence:
+
+1. Domain name:
+       example.com
+
+2. DNS:
+       domain → IP address
+
+3. Destination:
+       IP + port
+
+4. Transport:
+       For HTTPS with HTTP/1.1 or HTTP/2, commonly TCP.
+       HTTP/3 uses QUIC over UDP.
+
+5. Application protocol:
+       HTTP over TLS for HTTPS
+
+6. Server:
+       Receives/processes the request
+
+7. Response:
+       Server sends data back
+
+Write your own explanation here:
+
+MY EXPLANATION:
+
+____________________________________________________________
+
+____________________________________________________________
+
+____________________________________________________________
+
+============================================================
+7. CONNECT THIS TO DJANGO
+============================================================
+
+When you run:
+
+    python manage.py runserver
+
+and open:
+
+    http://127.0.0.1:8000/
+
+Think:
+
+    Browser / curl
+          ↓
+    127.0.0.1
+          ↓
+       port 8000
+          ↓
+       TCP
+          ↓
+    Django server
+          ↓
+       HTTP
+          ↓
+    Django URL routing
+          ↓
+       View
+          ↓
+    Response
+
+COMMAND:
+
+    curl -I http://127.0.0.1:8000/
+
+PASTE OUTPUT:
+
+----- OUTPUT START -----
+
+----- OUTPUT END -----
+
+============================================================
+8. QUICK REFERENCE — COMMAND → CONCEPT
+============================================================
+
+CLIENT–SERVER
+    python -m http.server 8000
+        → start a local HTTP server
+
+    curl http://127.0.0.1:8000/
+        → client sends request to server
+
+    curl -I http://127.0.0.1:8000/
+        → inspect HTTP response headers
+
+    python manage.py runserver
+        → Django development server
+
+IP ADDRESSES
+    ip addr
+        → interfaces + IPv4/IPv6 addresses
+
+    hostname -I
+        → host IP addresses
+
+    ping -c 4 127.0.0.1
+        → test loopback using ICMP
+
+    ping -c 4 google.com
+        → DNS resolution + ICMP reachability
+
+PORTS / SOCKETS
+    ss -tuln
+        → listening TCP/UDP sockets
+
+    ss -ltnp
+        → listening TCP sockets + process details
+
+    ss -ltn | grep 8000
+        → check Django port 8000
+
+TCP / UDP
+    ss -ltn
+        → observe TCP listeners
+
+    ss -lun
+        → observe UDP sockets
+
+    nc -l 9000
+        → simple TCP listener
+
+    nc 127.0.0.1 9000
+        → simple TCP client
+
+    nc -u -l 9001
+        → simple UDP listener (if supported)
+
+    nc -u 127.0.0.1 9001
+        → simple UDP client (if supported)
+
+DNS
+    getent hosts google.com
+        → hostname resolution
+
+    dig google.com
+        → detailed DNS query
+
+    dig A google.com
+        → IPv4 DNS record
+
+    dig AAAA google.com
+        → IPv6 DNS record
+
+    resolvectl status
+        → configured DNS resolver information
+
+    cat /etc/resolv.conf
+        → resolver configuration file
+
+    dig -x <IP>
+        → reverse DNS lookup
+
+============================================================
+9. FINAL QUESTIONS TO ANSWER AFTER THE LAB
+============================================================
+
+1. What is the difference between a client and a server?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+2. What is an IP address?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+3. Why do we need ports if we already have an IP address?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+4. What is the difference between TCP and UDP?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+5. What does DNS do?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+6. What is 127.0.0.1?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+7. What does `127.0.0.1:8000` mean?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+8. When you open `http://127.0.0.1:8000/`, which part is the IP
+   address and which part is the port?
+
+Answer:
+____________________________________________________________
+
+9. Why does `ping google.com` not test HTTP?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+10. In your Django project, what is the relationship between:
+        Browser → IP → Port → TCP → HTTP → Django?
+
+Answer:
+____________________________________________________________
+____________________________________________________________
+
+============================================================
+10. AFTER YOU FINISH
+============================================================
+
+Paste the output of each command into this file under its section.
+
+Do not worry if your output differs from examples elsewhere. The purpose of
+this lab is to understand YOUR machine and YOUR current network.
+
+Suggested order:
+
+    1. python -m http.server 8000
+    2. curl http://127.0.0.1:8000/
+    3. curl -I http://127.0.0.1:8000/
+    4. ip addr
+    5. hostname -I
+    6. ping -c 4 127.0.0.1
+    7. ping -c 4 google.com
+    8. ss -tuln
+    9. ss -ltnp
+   10. Django runserver + ss -ltn | grep 8000
+   11. getent hosts google.com
+   12. dig google.com
+   13. dig A google.com
+   14. dig AAAA google.com
+   15. resolvectl status
+   16. dig -x <IP>
+   17. Optional netcat TCP/UDP experiments
+
+End goal:
+
+    Client–Server
+          ↓
+    IP Address
+          ↓
+       Port
+          ↓
+    TCP / UDP / QUIC
+          ↓
+        HTTP
+          ↓
+        Django
+          ↓
+       Application
