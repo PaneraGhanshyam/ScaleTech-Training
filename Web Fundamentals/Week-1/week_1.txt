@@ -315,6 +315,30 @@ QUESTIONS:
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp110s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 74:d4:dd:25:42:d0 brd ff:ff:ff:ff:ff:ff
+    altname enx74d4dd2542d0
+3: wlp0s20f3: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether e2:c3:f2:85:2e:69 brd ff:ff:ff:ff:ff:ff permaddr **:**:**:**:**:**
+    altname wlxc0a5e83712f2
+5: enp0s20f0u1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 1000
+    link/ether ee:30:2b:95:82:2b brd ff:ff:ff:ff:ff:ff permaddr **:**:**:**:**:**
+    altname enx262b422455ff
+    inet 10.121.128.139/24 brd 10.121.128.255 scope global dynamic noprefixroute enp0s20f0u1
+       valid_lft 2299sec preferred_lft 2299sec
+    inet6 2409:40c1:3151:47ed:e842:b813:e440:f201/64 scope global deprecated dynamic noprefixroute
+       valid_lft 2311sec preferred_lft 0sec
+    inet6 2409:40c1:314a:4b49:23b9:36b0:beb8:d823/64 scope global dynamic noprefixroute
+       valid_lft 7103sec preferred_lft 7103sec
+    inet6 fe80::f6d5:42e9:34c2:cc87/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
 
 ----- OUTPUT END -----
 
@@ -334,7 +358,8 @@ Compare this with the addresses you saw in `ip addr`.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
-
+ghanshyam@localhost:~$ hostname -I
+10.121.128.139 2409:40c1:3151:47ed:e842:b813:e440:f201 2409:40c1:314a:4b49:23b9:36b0:beb8:d823
 ----- OUTPUT END -----
 
 ------------------------------------------------------------
@@ -359,7 +384,16 @@ Ping uses ICMP, not HTTP and not TCP/UDP.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$ ping -c 4 127.0.0.1
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.052 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.043 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.035 ms
+64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.056 ms
 
+--- 127.0.0.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3049ms
+rtt min/avg/max/mdev = 0.035/0.046/0.056/0.008 ms
 ----- OUTPUT END -----
 
 ------------------------------------------------------------
@@ -381,7 +415,16 @@ This demonstrates name resolution + IP reachability. It does NOT test an HTTP se
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$  ping -c 4 google.com
+PING google.com (2404:6800:4000:101d::71) 56 data bytes
+64 bytes from 2404:6800:4000:101d::71: icmp_seq=1 ttl=111 time=54.0 ms
+64 bytes from 2404:6800:4000:101d::71: icmp_seq=2 ttl=111 time=54.4 ms
+64 bytes from 2404:6800:4000:101d::71: icmp_seq=3 ttl=111 time=63.8 ms
+64 bytes from 2404:6800:4000:101d::71: icmp_seq=4 ttl=111 time=50.7 ms
 
+--- google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 7234ms
+rtt min/avg/max/mdev = 50.716/55.731/63.762/4.855 ms
 ----- OUTPUT END -----
 
 ============================================================
@@ -425,7 +468,26 @@ This means something is listening on TCP port 8000 on the loopback interface.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
-
+ghanshyam@localhost:~$ ss -tuln
+Netid                   State                     Recv-Q                    Send-Q                                       Local Address:Port                                       Peer Address:Port
+udp                     UNCONN                    0                         0                                              224.0.0.251:5353                                            0.0.0.0:*
+udp                     UNCONN                    0                         0                                              224.0.0.251:5353                                            0.0.0.0:*
+udp                     UNCONN                    0                         0                                                  0.0.0.0:5353                                            0.0.0.0:*
+udp                     UNCONN                    0                         0                                                  0.0.0.0:5355                                            0.0.0.0:*
+udp                     UNCONN                    0                         0                                               127.0.0.54:53                                              0.0.0.0:*
+udp                     UNCONN                    0                         0                                            127.0.0.53%lo:53                                              0.0.0.0:*
+udp                     UNCONN                    0                         0                                                127.0.0.1:323                                             0.0.0.0:*
+udp                     UNCONN                    0                         0                                                     [::]:5353                                               [::]:*
+udp                     UNCONN                    0                         0                                                     [::]:5355                                               [::]:*
+udp                     UNCONN                    0                         0                                                    [::1]:323                                                [::]:*
+udp                     UNCONN                    0                         0                                                        *:1716                                                  *:*
+tcp                     LISTEN                    0                         4096                                             127.0.0.1:631                                             0.0.0.0:*
+tcp                     LISTEN                    0                         4096                                               0.0.0.0:5355                                            0.0.0.0:*
+tcp                     LISTEN                    0                         4096                                            127.0.0.54:53                                              0.0.0.0:*
+tcp                     LISTEN                    0                         4096                                         127.0.0.53%lo:53                                              0.0.0.0:*
+tcp                     LISTEN                    0                         4096                                                  [::]:5355                                               [::]:*
+tcp                     LISTEN                    0                         50                                                       *:1716                                                  *:*
+tcp                     LISTEN                    0                         4096                                                 [::1]:631                                                [::]:*
 ----- OUTPUT END -----
 
 ------------------------------------------------------------
@@ -446,7 +508,15 @@ If some process details are hidden because of permissions, that is normal.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
-
+ghanshyam@localhost:~$ ss -ltnp
+State                Recv-Q               Send-Q                               Local Address:Port                               Peer Address:Port               Process
+LISTEN               0                    4096                                     127.0.0.1:631                                     0.0.0.0:*
+LISTEN               0                    4096                                       0.0.0.0:5355                                    0.0.0.0:*
+LISTEN               0                    4096                                    127.0.0.54:53                                      0.0.0.0:*
+LISTEN               0                    4096                                 127.0.0.53%lo:53                                      0.0.0.0:*
+LISTEN               0                    4096                                          [::]:5355                                       [::]:*
+LISTEN               0                    50                                               *:1716                                          *:*                   users:(("kdeconnectd",pid=3232,fd=17))
+LISTEN               0                    4096                                         [::1]:631                                        [::]:*
 ----- OUTPUT END -----
 
 ------------------------------------------------------------
@@ -474,7 +544,16 @@ This connects:
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
-
+ghanshyam@localhost:~$ ss -ltnp
+State                Recv-Q               Send-Q                               Local Address:Port                               Peer Address:Port               Process
+LISTEN               0                    4096                                     127.0.0.1:631                                     0.0.0.0:*
+LISTEN               0                    4096                                       0.0.0.0:5355                                    0.0.0.0:*
+LISTEN               0                    4096                                    127.0.0.54:53                                      0.0.0.0:*
+LISTEN               0                    4096                                 127.0.0.53%lo:53                                      0.0.0.0:*
+LISTEN               0                    10                                       127.0.0.1:8000                                    0.0.0.0:*                   users:(("python",pid=23250,fd=3))
+LISTEN               0                    4096                                          [::]:5355                                       [::]:*
+LISTEN               0                    50                                               *:1716                                          *:*                   users:(("kdeconnectd",pid=3232,fd=17))
+LISTEN               0                    4096                                         [::1]:631                                        [::]:*
 ----- OUTPUT END -----
 
 ============================================================
@@ -517,7 +596,16 @@ A TCP server listens for incoming connections.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
-
+ghanshyam@localhost:~$ ss -ltn
+State                        Recv-Q                       Send-Q                                             Local Address:Port                                               Peer Address:Port
+LISTEN                       0                            4096                                                   127.0.0.1:631                                                     0.0.0.0:*
+LISTEN                       0                            4096                                                     0.0.0.0:5355                                                    0.0.0.0:*
+LISTEN                       0                            4096                                                  127.0.0.54:53                                                      0.0.0.0:*
+LISTEN                       0                            4096                                               127.0.0.53%lo:53                                                      0.0.0.0:*
+LISTEN                       0                            10                                                     127.0.0.1:8000                                                    0.0.0.0:*
+LISTEN                       0                            4096                                                        [::]:5355                                                       [::]:*
+LISTEN                       0                            50                                                             *:1716                                                          *:*
+LISTEN                       0                            4096                                                       [::1]:631                                                        [::]:*
 ----- OUTPUT END -----
 
 ------------------------------------------------------------
@@ -537,70 +625,20 @@ UDP does not have the same TCP `LISTEN` state because UDP is connectionless.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
-
------ OUTPUT END -----
-
-------------------------------------------------------------
-4.3 Optional: Test a local TCP connection with netcat
-------------------------------------------------------------
-
-Only do this if `nc` (netcat) is installed.
-
-Terminal 1:
-
-    nc -l 9000
-
-Terminal 2:
-
-    nc 127.0.0.1 9000
-
-Type text in either terminal and press Enter.
-
-WHAT TO OBSERVE:
-- One terminal acts as a TCP listener.
-- The other acts as a TCP client.
-- Data typed on one side appears on the other side.
-
-Then in another terminal:
-
-    ss -tnp | grep 9000
-
-WHAT TO UNDERSTAND:
-    TCP client
-        ↓
-    TCP connection
-        ↓
-    TCP server
-
-PASTE OUTPUT:
-
------ OUTPUT START -----
-
------ OUTPUT END -----
-
-------------------------------------------------------------
-4.4 Optional: UDP with netcat
-------------------------------------------------------------
-
-Only do this if your installed `nc` supports UDP mode.
-
-Terminal 1:
-
-    nc -u -l 9001
-
-Terminal 2:
-
-    nc -u 127.0.0.1 9001
-
-Type text and press Enter.
-
-WHAT TO UNDERSTAND:
-UDP sends datagrams and does not establish a TCP-style connection.
-
-PASTE OUTPUT:
-
------ OUTPUT START -----
-
+ghanshyam@localhost:~$ ss -lun
+State                        Recv-Q                       Send-Q                                             Local Address:Port                                               Peer Address:Port
+UNCONN                       0                            0                                                    224.0.0.251:5353                                                    0.0.0.0:*
+UNCONN                       0                            0                                                    224.0.0.251:5353                                                    0.0.0.0:*
+UNCONN                       0                            0                                                        0.0.0.0:5353                                                    0.0.0.0:*
+UNCONN                       0                            0                                                        0.0.0.0:5355                                                    0.0.0.0:*
+UNCONN                       0                            0                                                     127.0.0.54:53                                                      0.0.0.0:*
+UNCONN                       0                            0                                                  127.0.0.53%lo:53                                                      0.0.0.0:*
+UNCONN                       0                            0                                                      127.0.0.1:323                                                     0.0.0.0:*
+UNCONN                       0                            0                                                           [::]:5353                                                       [::]:*
+UNCONN                       0                            0                                                           [::]:5355                                                       [::]:*
+UNCONN                       0                            0                                                          [::1]:323                                                        [::]:*
+UNCONN                       0                            0                                                              *:1716                                                          *:*
+ghanshyam@localhost:~$
 ----- OUTPUT END -----
 
 ============================================================
@@ -635,6 +673,11 @@ WHAT TO OBSERVE:
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$ getent hosts google.com
+2404:6800:4000:101d::66 google.com
+2404:6800:4000:101d::71 google.com
+2404:6800:4000:101d::8b google.com
+2404:6800:4000:101d::65 google.com
 
 ----- OUTPUT END -----
 
@@ -662,6 +705,31 @@ Do not try to understand every field yet.
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$ dig google.com
+
+; <<>> DiG 9.18.50 <<>> google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 62233
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1280
+;; QUESTION SECTION:
+;google.com.                    IN      A
+
+;; ANSWER SECTION:
+google.com.             279     IN      A       192.178.134.139
+google.com.             279     IN      A       192.178.134.100
+google.com.             279     IN      A       192.178.134.138
+google.com.             279     IN      A       192.178.134.101
+google.com.             279     IN      A       192.178.134.113
+google.com.             279     IN      A       192.178.134.102
+
+;; Query time: 50 msec
+;; SERVER: 10.121.128.16#53(10.121.128.16) (UDP)
+;; WHEN: Wed Sep 23 00:12:51 IST 2026
+;; MSG SIZE  rcvd: 135
 
 ----- OUTPUT END -----
 
@@ -679,6 +747,29 @@ CONCEPT:
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$  dig A google.com
+
+; <<>> DiG 9.18.50 <<>> A google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 40885
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;google.com.                    IN      A
+
+;; ANSWER SECTION:
+google.com.             172     IN      A       192.178.134.139
+google.com.             172     IN      A       192.178.134.102
+google.com.             172     IN      A       192.178.134.113
+google.com.             172     IN      A       192.178.134.101
+google.com.             172     IN      A       192.178.134.138
+google.com.             172     IN      A       192.178.134.100
+
+;; Query time: 1 msec
+;; SERVER: 10.121.128.16#53(10.121.128.16) (UDP)
+;; WHEN: Wed Sep 23 00:14:38 IST 2026
+;; MSG SIZE  rcvd: 124
 
 ----- OUTPUT END -----
 
@@ -696,6 +787,29 @@ CONCEPT:
 PASTE OUTPUT:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$ dig AAAA google.com
+
+; <<>> DiG 9.18.50 <<>> AAAA google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7654
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1280
+;; QUESTION SECTION:
+;google.com.                    IN      AAAA
+
+;; ANSWER SECTION:
+google.com.             296     IN      AAAA    2404:6800:4013:807::66
+google.com.             296     IN      AAAA    2404:6800:4013:807::65
+google.com.             296     IN      AAAA    2404:6800:4013:807::64
+google.com.             296     IN      AAAA    2404:6800:4013:807::71
+
+;; Query time: 70 msec
+;; SERVER: 10.121.128.16#53(10.121.128.16) (UDP)
+;; WHEN: Wed Sep 23 00:14:58 IST 2026
+;; MSG SIZE  rcvd: 151
 
 ----- OUTPUT END -----
 
@@ -722,319 +836,30 @@ PASTE OUTPUT:
 resolvectl status:
 
 ----- OUTPUT START -----
+ghanshyam@localhost:~$ resolvectl status
+Global
+           Protocols: LLMNR=resolve -mDNS DNSOverTLS=opportunistic DNSSEC=yes/supported
+    resolv.conf mode: foreign
+  Current DNS Server: 149.112.112.112#dns.quad9.net
+         DNS Servers: 9.9.9.9#dns.quad9.net 149.112.112.112#dns.quad9.net
+Fallback DNS Servers: 1.1.1.1#cloudflare-dns.com 1.0.0.1#cloudflare-dns.com
+          DNS Domain: ~.
+
+Link 2 (enp110s0)
+    Current Scopes: none
+         Protocols: -DefaultRoute LLMNR=resolve -mDNS DNSOverTLS=opportunistic DNSSEC=yes/supported
+     Default Route: no
+
+Link 3 (wlp0s20f3)
+    Current Scopes: none
+         Protocols: -DefaultRoute LLMNR=resolve -mDNS DNSOverTLS=opportunistic DNSSEC=yes/supported
+     Default Route: no
+
+Link 5 (enp0s20f0u1)
+    Current Scopes: DNS LLMNR/IPv4 LLMNR/IPv6
+         Protocols: +DefaultRoute LLMNR=resolve -mDNS DNSOverTLS=opportunistic DNSSEC=yes/supported
+Current DNS Server: 10.121.128.16
+       DNS Servers: 10.121.128.16 2409:40c1:314a:4b49::88
+     Default Route: yes
 
 ----- OUTPUT END -----
-
-OR /etc/resolv.conf:
-
------ OUTPUT START -----
-
------ OUTPUT END -----
-
-------------------------------------------------------------
-5.6 Reverse DNS lookup
-------------------------------------------------------------
-
-First resolve a domain:
-
-    dig A google.com
-
-Take one IPv4 address from the ANSWER SECTION.
-
-Then run:
-
-    dig -x <IP_ADDRESS>
-
-Example format only:
-
-    dig -x 192.0.2.1
-
-Do NOT use the example address unless it is actually yours.
-
-CONCEPT:
-Forward lookup:
-    name → IP
-
-Reverse lookup:
-    IP → name (when a PTR record exists)
-
-PASTE OUTPUT:
-
------ OUTPUT START -----
-
------ OUTPUT END -----
-
-============================================================
-6. CONNECT ALL THREE TOPICS
-============================================================
-
-Now run:
-
-    curl -I https://example.com
-
-Then think through the following sequence:
-
-1. Domain name:
-       example.com
-
-2. DNS:
-       domain → IP address
-
-3. Destination:
-       IP + port
-
-4. Transport:
-       For HTTPS with HTTP/1.1 or HTTP/2, commonly TCP.
-       HTTP/3 uses QUIC over UDP.
-
-5. Application protocol:
-       HTTP over TLS for HTTPS
-
-6. Server:
-       Receives/processes the request
-
-7. Response:
-       Server sends data back
-
-Write your own explanation here:
-
-MY EXPLANATION:
-
-____________________________________________________________
-
-____________________________________________________________
-
-____________________________________________________________
-
-============================================================
-7. CONNECT THIS TO DJANGO
-============================================================
-
-When you run:
-
-    python manage.py runserver
-
-and open:
-
-    http://127.0.0.1:8000/
-
-Think:
-
-    Browser / curl
-          ↓
-    127.0.0.1
-          ↓
-       port 8000
-          ↓
-       TCP
-          ↓
-    Django server
-          ↓
-       HTTP
-          ↓
-    Django URL routing
-          ↓
-       View
-          ↓
-    Response
-
-COMMAND:
-
-    curl -I http://127.0.0.1:8000/
-
-PASTE OUTPUT:
-
------ OUTPUT START -----
-
------ OUTPUT END -----
-
-============================================================
-8. QUICK REFERENCE — COMMAND → CONCEPT
-============================================================
-
-CLIENT–SERVER
-    python -m http.server 8000
-        → start a local HTTP server
-
-    curl http://127.0.0.1:8000/
-        → client sends request to server
-
-    curl -I http://127.0.0.1:8000/
-        → inspect HTTP response headers
-
-    python manage.py runserver
-        → Django development server
-
-IP ADDRESSES
-    ip addr
-        → interfaces + IPv4/IPv6 addresses
-
-    hostname -I
-        → host IP addresses
-
-    ping -c 4 127.0.0.1
-        → test loopback using ICMP
-
-    ping -c 4 google.com
-        → DNS resolution + ICMP reachability
-
-PORTS / SOCKETS
-    ss -tuln
-        → listening TCP/UDP sockets
-
-    ss -ltnp
-        → listening TCP sockets + process details
-
-    ss -ltn | grep 8000
-        → check Django port 8000
-
-TCP / UDP
-    ss -ltn
-        → observe TCP listeners
-
-    ss -lun
-        → observe UDP sockets
-
-    nc -l 9000
-        → simple TCP listener
-
-    nc 127.0.0.1 9000
-        → simple TCP client
-
-    nc -u -l 9001
-        → simple UDP listener (if supported)
-
-    nc -u 127.0.0.1 9001
-        → simple UDP client (if supported)
-
-DNS
-    getent hosts google.com
-        → hostname resolution
-
-    dig google.com
-        → detailed DNS query
-
-    dig A google.com
-        → IPv4 DNS record
-
-    dig AAAA google.com
-        → IPv6 DNS record
-
-    resolvectl status
-        → configured DNS resolver information
-
-    cat /etc/resolv.conf
-        → resolver configuration file
-
-    dig -x <IP>
-        → reverse DNS lookup
-
-============================================================
-9. FINAL QUESTIONS TO ANSWER AFTER THE LAB
-============================================================
-
-1. What is the difference between a client and a server?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-2. What is an IP address?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-3. Why do we need ports if we already have an IP address?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-4. What is the difference between TCP and UDP?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-5. What does DNS do?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-6. What is 127.0.0.1?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-7. What does `127.0.0.1:8000` mean?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-8. When you open `http://127.0.0.1:8000/`, which part is the IP
-   address and which part is the port?
-
-Answer:
-____________________________________________________________
-
-9. Why does `ping google.com` not test HTTP?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-10. In your Django project, what is the relationship between:
-        Browser → IP → Port → TCP → HTTP → Django?
-
-Answer:
-____________________________________________________________
-____________________________________________________________
-
-============================================================
-10. AFTER YOU FINISH
-============================================================
-
-Paste the output of each command into this file under its section.
-
-Do not worry if your output differs from examples elsewhere. The purpose of
-this lab is to understand YOUR machine and YOUR current network.
-
-Suggested order:
-
-    1. python -m http.server 8000
-    2. curl http://127.0.0.1:8000/
-    3. curl -I http://127.0.0.1:8000/
-    4. ip addr
-    5. hostname -I
-    6. ping -c 4 127.0.0.1
-    7. ping -c 4 google.com
-    8. ss -tuln
-    9. ss -ltnp
-   10. Django runserver + ss -ltn | grep 8000
-   11. getent hosts google.com
-   12. dig google.com
-   13. dig A google.com
-   14. dig AAAA google.com
-   15. resolvectl status
-   16. dig -x <IP>
-   17. Optional netcat TCP/UDP experiments
-
-End goal:
-
-    Client–Server
-          ↓
-    IP Address
-          ↓
-       Port
-          ↓
-    TCP / UDP / QUIC
-          ↓
-        HTTP
-          ↓
-        Django
-          ↓
-       Application
