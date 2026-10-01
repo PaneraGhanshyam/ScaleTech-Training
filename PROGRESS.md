@@ -1,5 +1,81 @@
 # Training Progress
 
+## 2026-10-02
+
+### What I Learned
+
+#### Request and Response Bodies
+- Learned that the **request body** carries data from client to server.
+- Learned that the **response body** carries data from server to client.
+- Reviewed common formats such as **JSON, XML, form data, multipart form data, text, HTML, and binary data**.
+- Learned the purpose of `Content-Type` and `Accept` headers.
+- Understood why **JSON is widely used in REST APIs**.
+
+#### HTTP Method Semantics
+- Revised `GET` for reading, `POST` for creating/submitting, `PUT` for replacing/updating, `PATCH` for partial updates, and `DELETE` for deletion.
+- Learned that HTTP method semantics define the intended meaning and behavior of each method.
+- Learned the basic concepts of **safe** and **idempotent** methods.
+
+#### DRF Serializers
+- Created and tested a `StudentSerializer` using `ModelSerializer`.
+- Learned how serializers convert Django model/queryset data into API-friendly representations.
+- Learned how serializers validate incoming API data.
+- Compared model/queryset data with `serializer.data` using console output.
+
+#### DRF APIView
+- Implemented an `APIView` for the Student API.
+- Learned how HTTP methods map to methods such as `get()` and `post()`.
+- Used Django ORM, `request.data`, serializers, and DRF `Response`.
+- Tested GET and POST operations.
+- Compared DRF APIView with Django function-based and class-based views.
+
+#### DRF ViewSets and ModelViewSet
+- Learned the difference between `APIView`, `ViewSet`, and `ModelViewSet`.
+- Learned actions such as `list()`, `retrieve()`, `create()`, `update()`, `partial_update()`, and `destroy()`.
+- Implemented a `ModelViewSet` for the learning project.
+- Learned that `ModelViewSet` provides standard CRUD behavior with less repetitive code.
+- Learned that ViewSets can be customized by overriding actions or adding custom actions.
+
+#### Routers and Endpoints
+- Learned what API resources and endpoints are.
+- Implemented a `DefaultRouter`.
+- Registered the `ModelViewSet` with the router.
+- Learned how routers generate standard CRUD routes and map them to ViewSet actions.
+- Tested list, create, retrieve, update, partial update, and delete endpoints.
+
+### Tasks / Activities
+- Revised request/response bodies and HTTP method semantics.
+- Continued the `drf_learning` project as a DRF learning lab.
+- Used Django Admin to create test data.
+- Implemented and tested serializers and APIView.
+- Created a separate `courses` app to practice `ModelViewSet` without replacing the Student APIView.
+- Implemented `CourseSerializer` and `CourseViewSet`.
+- Configured `DefaultRouter` and tested the generated Course endpoints.
+- Compared APIView-based CRUD with ModelViewSet + Router.
+
+### Challenges
+- Understanding why serializers are needed instead of directly returning Django model/queryset objects.
+- Understanding the difference between APIView, ViewSet, and ModelViewSet.
+- Understanding ViewSet actions versus APIView HTTP-method methods.
+- Understanding how routers map URLs to ViewSet actions.
+- Understanding why DRF provides multiple levels of abstraction.
+
+### Key Takeaways
+- **Request body** sends data; **response body** returns data.
+- HTTP methods describe the intended operation on a resource.
+- **Serializer** handles data conversion and validation.
+- **APIView** gives explicit control over API request handling.
+- **ViewSet** organizes API behavior around resource actions.
+- **ModelViewSet** provides standard model CRUD behavior.
+- **Router** generates URL patterns and maps them to ViewSet actions.
+- APIView and ModelViewSet can both implement CRUD; ModelViewSet reduces repetitive CRUD and routing code.
+
+### Progress / Updates
+- Completed **Request/Response Bodies** and **HTTP Method Semantics**.
+- Completed practical learning of **Serializers, APIView, ViewSets, ModelViewSet, Routers, and Endpoints**.
+- Practiced these concepts while revising Django **Models, ORM, Migrations, URLs, and Admin**.
+- Next topic: **DRF Authentication — Token, JWT, and OAuth2**.
+
 ## 2026-09-22
 
 ### What I Learned
