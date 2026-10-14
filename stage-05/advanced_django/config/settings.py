@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
+from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     "rest_framework.authtoken",
+    "oauth2_provider",
+    "django_cleanup.apps.CleanupConfig",  # Auto-delete files on model delete
     "tasks",
 ]
 
@@ -50,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # --- Custom middleware ---
+    'tasks.middleware.RequestLoggingMiddleware',
+    'tasks.middleware.SimpleRateLimitMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -120,6 +127,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
+# ---------------------------------------------------------------------------
+# MEDIA FILES — For user-uploaded files (FileField, ImageField)
+# ---------------------------------------------------------------------------
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
@@ -129,9 +143,83 @@ MAILERS = {
     },
 }
 
+
+# ---------------------------------------------------------------------------
+# REST FRAMEWORK — Authentication configuration
+# ---------------------------------------------------------------------------
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ],
+}
+
+
+# ---------------------------------------------------------------------------
+# JWT CONFIGURATION — SimpleJWT settings
+# ---------------------------------------------------------------------------
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+
+# ---------------------------------------------------------------------------
+# OAUTH2 PROVIDER
+# ---------------------------------------------------------------------------
+OAUTH2_PROVIDER = {
+    "SCOPES": {
+        "read": "Read task information",
+        "write": "Create and modify task information",
+    },
+}
+
+
+# ---------------------------------------------------------------------------
+# CACHING — Using local memory cache for development
+# ---------------------------------------------------------------------------
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "advanced-django-cache",
+        "TIMEOUT": 300,  # Default timeout: 5 minutes
+    }
+}
+# For production, use Redis:
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#     }
+# }
+
+
+# ---------------------------------------------------------------------------
+# LOGGING — See middleware and signal log output in the console
+# ---------------------------------------------------------------------------
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[{asctime}] {levelname} {name}: {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "tasks": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
 }

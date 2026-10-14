@@ -1,5 +1,108 @@
 # Training Progress
 
+## 2026-10-14
+
+### What I Learned
+
+#### DRF Token Authentication
+- Learned how Django REST Framework's built-in **Token Authentication** identifies a user with a token stored in the database.
+- Added `rest_framework.authtoken` to `INSTALLED_APPS` and applied its database migrations.
+- Configured `TokenAuthentication` in `REST_FRAMEWORK` settings.
+- Created a protected `CurrentUserView` using `APIView` and `IsAuthenticated`.
+- Learned how `request.user` represents the authenticated user and `request.auth` contains the authentication token.
+- Configured and tested the built-in `obtain_auth_token` endpoint.
+- Used `curl` to test authenticated requests and learned the required header format: `Authorization: Token <token>`.
+- Learned how database-backed DRF tokens can be inspected and revoked through Django Admin.
+
+#### JWT Authentication
+- Installed and configured **Simple JWT** for Django REST Framework.
+- Configured endpoints to obtain access/refresh token pairs, refresh access tokens, and verify tokens.
+- Tested JWT authentication against a protected endpoint using `Authorization: Bearer <access_token>`.
+- Learned the JWT structure: header, payload, and signature.
+- Understood that a JWT is signed rather than encrypted and that sensitive information should not be placed in its payload.
+- Learned the different purposes of access tokens and refresh tokens, along with expiry and revocation considerations.
+- Tested JWT authentication alongside the existing DRF Token Authentication setup.
+
+#### OAuth2 Authentication and Authorization
+- Learned that **OAuth2 is an authorization framework**, not simply another JWT format.
+- Integrated Django OAuth Toolkit into the Django project.
+- Learned the purpose of OAuth2 applications, client credentials, access tokens, and scopes.
+- Practiced the client credentials grant for service-to-service access.
+- Configured scopes such as `read` and `write` and learned how scopes restrict the operations available to a client.
+- Connected OAuth2 authentication and scope-based permissions to a protected API endpoint.
+- Compared DRF Token Authentication, JWT, and OAuth2, including their different token handling and use cases.
+- Ran `python -m pip check` and `python manage.py check`; both checks completed without reported issues.
+
+#### Middleware
+- Learned that Django middleware processes requests and responses around view execution.
+- Understood the request/response middleware lifecycle and why middleware is useful for behavior that applies across many views.
+- Implemented and tested custom middleware for request-level processing, such as recording request timing and adding useful response metadata.
+- Learned why middleware order matters and why middleware should be used for cross-cutting concerns rather than ordinary business logic.
+
+#### Custom Decorators
+- Learned how Python decorators wrap functions to add reusable behavior without duplicating code in each view.
+- Implemented and used a custom decorator with Django view logic.
+- Compared custom decorators with Django's built-in decorators and DRF permission classes.
+- Learned to preserve wrapped-view metadata with `functools.wraps` and to choose decorators or permission classes based on the job they need to perform.
+
+#### Django Signals
+- Learned that Django signals allow code to respond to events such as model creation, saving, or deletion.
+- Implemented and tested signal-based behavior associated with model events.
+- Learned how to organize signal handlers and register them through an app configuration so handlers are loaded reliably.
+- Understood that signals are useful for decoupled side effects, but should not hide core business logic or be used unnecessarily.
+
+#### Caching
+- Learned why caching reduces repeated computation and database access for frequently requested data.
+- Used Django's cache framework to cache data and return cached results on subsequent requests.
+- Learned how cache keys, timeouts, and invalidation affect cached data correctness.
+- Connected cache invalidation to data changes so responses do not continue serving stale results after updates.
+- Learned the importance of choosing an appropriate cache backend for development versus production.
+
+#### File Upload and Management
+- Learned how Django handles uploaded files using `request.FILES`, file fields, and media settings.
+- Implemented file upload and storage functionality for the project.
+- Added validation for upload requirements such as permitted file types and maximum file size.
+- Learned the purpose of `MEDIA_ROOT` and `MEDIA_URL` for local development media storage and serving.
+- Reviewed file-upload security, including validating content instead of trusting a filename or client-provided content type, and avoiding public exposure of private files.
+
+### Tasks / Activities
+- Configured and tested DRF Token Authentication with a protected current-user endpoint.
+- Installed Simple JWT and tested access-token and refresh-token endpoints.
+- Integrated OAuth2 using Django OAuth Toolkit and practiced scoped API access.
+- Tested authentication behavior with `curl`, including authorization headers and HTTP responses.
+- Implemented and tested custom Django middleware and a custom decorator.
+- Implemented and tested signal-based model-event behavior.
+- Implemented caching and practiced invalidating cached data after changes.
+- Implemented file uploads, configured media handling, and validated uploaded files.
+- Used the existing advanced Django project to connect these concepts with practical API behavior.
+
+### Challenges
+- Remembering the differences between the `Token` and `Bearer` authorization schemes.
+- Distinguishing authentication from authorization and understanding the additional role of OAuth2 scopes.
+- Understanding which concerns belong in middleware, decorators, signals, or explicit view/service logic.
+- Keeping cached responses consistent with updated database records.
+- Handling file uploads safely by validating input and configuring media storage correctly.
+- Considering package compatibility and verifying behavior with both Django system checks and actual requests.
+
+### Key Takeaways
+- **DRF Token Authentication** uses database-backed tokens that can be revoked by deleting their records.
+- **JWT** uses signed claims, commonly with separate access and refresh tokens; signing does not encrypt the payload.
+- **OAuth2** supports scoped access and common authorization scenarios such as service-to-service integrations.
+- Authentication establishes the requester's identity or client context; authorization determines which actions and resources are permitted.
+- **Middleware** is suited to request/response behavior shared across the application.
+- **Custom decorators** provide reusable wrappers around view behavior, while DRF permission classes are appropriate for API access-control rules.
+- **Signals** let code react to model events, but core business rules should remain explicit and understandable.
+- **Caching** improves performance when used with suitable timeouts and reliable invalidation.
+- **File upload handling** requires storage configuration, validation, and security precautions.
+- Testing real requests and edge cases is necessary in addition to passing dependency and Django system checks.
+
+### Progress / Updates
+- Completed practical learning and implementation of **DRF Token Authentication, JWT Authentication, and OAuth2**.
+- Completed **Middleware and Custom Decorators**.
+- Completed **Signals and Caching**.
+- Completed **File Upload and Management**.
+- Completed today's planned advanced Django and DRF authentication topics in the learning project.
+
 ## 2026-10-02
 
 ### What I Learned
