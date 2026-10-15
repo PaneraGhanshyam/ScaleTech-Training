@@ -1,5 +1,64 @@
 # Training Progress
 
+## 2026-10-15
+
+### What I Learned
+
+#### 1. Database Optimization — Query Optimization
+- Learned how the N+1 query problem occurs when related objects are fetched separately while iterating over a queryset.
+- Understood `select_related()` for single-valued relationships such as `ForeignKey` and `OneToOneField`; it uses a SQL `JOIN` to fetch related data together.
+- Understood `prefetch_related()` for collections of related objects, such as retrieving a user's tasks; it uses separate queries and matches the results in Python.
+- Compared `Task.objects.all()` with `Task.objects.select_related("owner")` using `CaptureQueriesContext`.
+- Verified that accessing owners for three tasks took 4 queries without `select_related()` and 1 query with it.
+
+#### 2. Database Optimization — Indexing and Query Planning
+- Learned that indexes can speed up suitable lookups but should not be added to every column; decisions should be based on query patterns and performance needs.
+- Learned that Django can create an index with `db_index=True` and that `ForeignKey` fields are indexed by default unless indexing is disabled.
+- Added an index to the `Task.title` field and applied the schema change using Django migrations.
+- Used `.explain()` to inspect SQLite's query plan.
+- Observed `SCAN tasks_task` before the title index was added and `SEARCH tasks_task USING INDEX ...` after SQLite chose to use the new index.
+- Learned that the database engine's query planner chooses an execution plan; application developers can influence it through indexes, query design, and database statistics.
+
+#### 3. Scalability and Performance — Asynchronous Django, ASGI, and Channels
+- Learned the difference between synchronous and asynchronous execution and why async is useful for I/O-bound work that involves waiting.
+- Learned the roles of async views, ASGI, and Django Channels.
+- Configured the project to use Daphne/ASGI and added WebSocket routing.
+- Created an `EchoConsumer` using `AsyncWebsocketConsumer` and configured the WebSocket route.
+- Tested the WebSocket endpoint with a Python `websockets` client and received `Echo: Hello Django!` after sending `Hello Django!`.
+- Learned that WebSockets maintain a connection for ongoing, two-way communication, unlike the usual request/response pattern of HTTP.
+
+#### 4. Scalability and Performance — Rate Limiting and Throttling in DRF
+- Learned that rate limiting restricts request frequency and that DRF throttling enforces request-rate policies.
+- Implemented a demo endpoint using `ScopedRateThrottle` with a `demo` scope and a configured rate of `3/minute`.
+- Tested the endpoint with `curl` and observed HTTP `429 Too Many Requests` after the applicable rate limit was reached.
+- Learned the differences between `AnonRateThrottle`, `UserRateThrottle`, and `ScopedRateThrottle`:
+  - `AnonRateThrottle`: primarily identifies anonymous clients by IP address.
+  - `UserRateThrottle`: applies a rate per authenticated user, with IP-based identification for anonymous clients.
+  - `ScopedRateThrottle`: lets different endpoints use different rate policies through named scopes.
+- Learned that DRF stores throttle history in Django's cache and that built-in throttling is not a complete defense against denial-of-service attacks.
+
+### Tasks / Activities
+- Created demo users and tasks to observe query counts and demonstrate the N+1 query problem.
+- Compared query counts before and after using `select_related()`.
+- Added an index to `Task.title`, migrated the database, and inspected query plans with `.explain()`.
+- Installed/configured Django Channels and Daphne, created WebSocket consumer/routing files, and tested the echo WebSocket connection successfully.
+- Configured and tested a scoped DRF throttle using `curl`.
+
+### Challenges
+- Resolved Python interactive-shell indentation issues when using `CaptureQueriesContext` blocks.
+- Learned that a query plan may show a table scan for a small table, and that the database decides whether using an available index is worthwhile.
+- Distinguished between module-level function-based views and class-based views when registering a view in Django URLs.
+
+### Key Takeaways
+- Use `select_related()` for single related objects and `prefetch_related()` for related collections.
+- Indexes are useful when they match real query patterns, but they add storage and write overhead; inspect plans rather than assuming an index will always be used.
+- Async views, ASGI, and Channels have different roles: async views allow asynchronous code, ASGI provides the asynchronous application interface, and Channels adds support for WebSockets and other protocols.
+- DRF throttles apply rate policies based on client identity and/or endpoint scope. They are useful for usage control but should not be treated as robust infrastructure-level DoS protection.
+
+### Progress / Updates
+- Completed hands-on demonstrations of query optimization, indexing/query planning, a Channels WebSocket echo endpoint, and scoped DRF throttling.
+- Reviewed the three built-in DRF throttle classes and when each is appropriate.
+
 ## 2026-10-14
 
 ### What I Learned
