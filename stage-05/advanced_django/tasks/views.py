@@ -14,7 +14,8 @@ import logging
 from django.core.cache import cache
 from django.http import FileResponse, Http404
 from django.utils.decorators import method_decorator
-
+from rest_framework.permissions import AllowAny
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import IsAuthenticated
@@ -33,6 +34,10 @@ from .serializers import (
     TaskAttachmentSerializer,
     TaskAttachmentUploadSerializer,
 )
+import asyncio
+import time
+
+from django.http import JsonResponse
 
 logger = logging.getLogger("tasks.views")
 
@@ -435,3 +440,34 @@ class CacheDemoView(APIView):
             "demo_bulk_3",
         ])
         return Response({"message": "All demo cache keys cleared"})
+
+
+
+async def async_demo(request):
+    start = time.perf_counter()
+
+    await asyncio.gather(
+        asyncio.sleep(2),
+        asyncio.sleep(2),
+        asyncio.sleep(2),
+    )
+
+    elapsed = round(time.perf_counter() - start, 2)
+
+    return JsonResponse({
+        "message": "Async view executed successfully",
+        "concurrent_operations": 3,
+        "elapsed_seconds": elapsed,
+    })
+
+class ThrottleDemoView(APIView):
+    permission_classes = [AllowAny]
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "demo"
+
+    def get(self, request):
+        return Response({
+            "message": "Request allowed",
+            "throttle_scope": "demo",
+            "limit": "3 requests per minute",
+        })

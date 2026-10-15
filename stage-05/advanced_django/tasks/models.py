@@ -9,7 +9,7 @@ class Task(models.Model):
         ("done", "Done"),
     ]
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200,db_index=True)
     description = models.TextField(blank=True)
 
     owner = models.ForeignKey(

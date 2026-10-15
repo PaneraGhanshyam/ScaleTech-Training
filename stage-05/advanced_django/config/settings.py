@@ -38,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "daphne",
     'django.contrib.staticfiles',
     "rest_framework",
     "rest_framework.authtoken",
     "oauth2_provider",
     "django_cleanup.apps.CleanupConfig",  # Auto-delete files on model delete
     "tasks",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -152,6 +154,9 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ],
+    "DEFAULT_THROTTLE_RATES": {
+        "demo": "3/minute",
+    },
 }
 
 
@@ -223,3 +228,5 @@ LOGGING = {
         },
     },
 }
+
+ASGI_APPLICATION = "config.asgi.application"

@@ -762,3 +762,56 @@ class TaskCRUDTest(APITestCase):
         # Delete
         self.client.delete(f"/api/tasks/{task_id}/")
         self.assertEqual(Task.objects.count(), 0)
+
+
+# ===========================================================================
+# 8. QUERY OPTIMIZATION TESTS
+# ===========================================================================
+
+class TaskQueryOptimizationTest(TestCase):
+    """Demonstrate N+1 queries and Django's relationship loading helpers."""
+
+    def setUp(self):
+        for index in range(3):
+            owner = User.objects.create_user(username=f"queryuser{index}")
+            task = Task.objects.create(
+                title=f"Query Task {index}",
+                owner=owner,
+            )
+            TaskAttachment.objects.create(
+                task=task,
+                original_filename=f"attachment{index}.txt",
+                file_size=100,
+                uploaded_by=owner,
+            )
+
+    def test_traditional_task_retrieval_causes_n_plus_one_queries(self):
+        """Loading each task owner separately adds one query per task."""
+        with self.assertNumQueries(4):
+            tasks = list(Task.objects.all())
+            owners = [task.owner.username for task in tasks]
+
+        self.assertEqual(owners, ["queryuser0", "queryuser1", "queryuser2"])
+
+    def test_select_related_loads_task_owners_in_one_query(self):
+        """select_related joins each task's owner into the task query."""
+        with self.assertNumQueries(1):
+            tasks = list(Task.objects.select_related("owner"))
+            owners = [task.owner.username for task in tasks]
+
+        self.assertEqual(owners, ["queryuser0", "queryuser1", "queryuser2"])
+
+    def test_prefetch_related_loads_task_attachments_in_two_queries(self):
+        """prefetch_related fetches tasks and their attachments separately."""
+        with self.assertNumQueries(2):
+            tasks = list(Task.objects.prefetch_related("attachments"))
+            attachment_names = [
+                attachment.original_filename
+                for task in tasks
+                for attachment in task.attachments.all()
+            ]
+
+        self.assertEqual(
+            attachment_names,
+            ["attachment0.txt", "attachment1.txt", "attachment2.txt"],
+        )

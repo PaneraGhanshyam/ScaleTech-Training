@@ -8,7 +8,9 @@ from .views import (
     TaskAttachmentDetailView,
     AttachmentDownloadView,
     CacheDemoView,
+    ThrottleDemoView,
 )
+from .views import async_demo
 
 urlpatterns = [
     # Auth demo
@@ -40,4 +42,14 @@ urlpatterns = [
 
     # Caching demo
     path("cache-demo/", CacheDemoView.as_view(), name="cache_demo"),
+
+    # Async demo
+    path("async-demo/", async_demo, name="async_demo"),
+
+    # Throttling demo
+    path(
+    "throttle-demo/",
+    ThrottleDemoView.as_view(),
+    name="throttle_demo",
+),
 ]
