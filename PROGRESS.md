@@ -1,5 +1,127 @@
 # Training Progress
 
+
+## 2026-11-19
+
+## Today's progress
+
+### Environment setup preparation
+
+Reviewed the Bash commands and setup steps for:
+
+- Installing Node.js and npm with Fedora's package manager (`dnf`).
+- Checking the installed versions with `node --version` and `npm --version`.
+- Testing the Node.js REPL.
+- Checking the VS Code command-line interface.
+- Installing the recommended VS Code extensions:
+  - Prettier — `esbenp.prettier-vscode`
+  - Error Lens — `usernamehw.errorlens`
+  - ESLint — `dbaeumer.vscode-eslint`
+- Creating a JavaScript learning workspace under `~/Documents/JavaScript-Learning/`.
+- Creating and running a first JavaScript file with Node.js.
+
+> Note: These setup steps and commands were provided today. Their successful execution on the local machine has not yet been confirmed.
+
+### Chapter 2 — JavaScript Fundamentals
+
+Studied the first nine subtopics from JavaScript.info:
+
+1. **Hello, world!**
+   - JavaScript code in HTML using the `<script>` element.
+   - Loading an external JavaScript file with `src`.
+   - Running JavaScript files with Node.js.
+   - Difference between browser JavaScript and Node.js environments.
+
+2. **Code structure**
+   - Statements and semicolons.
+   - Automatic Semicolon Insertion (ASI).
+   - Single-line (`//`) and multi-line (`/* ... */`) comments.
+
+3. **The modern mode — `use strict`**
+   - Purpose of strict mode.
+   - Avoiding accidental creation of undeclared variables.
+   - Placement of the `"use strict"` directive.
+   - Strict mode in modules and class bodies.
+
+4. **Variables**
+   - Declaration, assignment and initialization.
+   - `let`, `const` and `var` at an introductory level.
+   - Reassignment and naming rules.
+   - CamelCase naming convention.
+
+5. **Data types**
+   - Primitive types: `number`, `bigint`, `string`, `boolean`, `null`, `undefined` and `symbol`.
+   - Object type, including introductory examples of objects.
+   - Dynamic typing and the `typeof` operator.
+   - Special values such as `NaN`, `Infinity` and `-Infinity`.
+   - The historical `typeof null === "object"` behaviour.
+
+6. **Interaction: `alert`, `prompt`, `confirm`**
+   - Browser dialog functions and their return values.
+   - `prompt()` returns a string or `null` when cancelled.
+   - `confirm()` returns a boolean.
+   - These are browser APIs, not standard Node.js globals.
+
+7. **Type conversions**
+   - Explicit conversion with `String()`, `Number()` and `Boolean()`.
+   - Implicit type conversion.
+   - Truthy and falsy values.
+   - `NaN` and checking it with `Number.isNaN()`.
+
+8. **Basic operators, maths**
+   - Arithmetic operators: `+`, `-`, `*`, `/`, `%` and `**`.
+   - String concatenation with `+`.
+   - Unary plus for numeric conversion.
+   - Assignment and compound assignment operators.
+   - Increment/decrement, prefix and postfix.
+   - Operator precedence and parentheses.
+
+9. **Comparisons**
+   - Relational operators: `>`, `<`, `>=`, `<=`.
+   - Loose equality (`==`, `!=`) and strict equality (`===`, `!==`).
+   - String comparisons and type conversion in comparisons.
+   - Special comparison behaviour involving `null`, `undefined` and zero.
+   - Recommendation to prefer strict equality in ordinary application code.
+
+## Practical examples discussed
+
+Used food-delivery application scenarios to practise the concepts:
+
+- Customer and food-item variables.
+- Calculating item subtotal, discount, delivery fee and final amount.
+- Converting a quantity received as text into a number.
+- Checking free-delivery eligibility with a comparison.
+- Displaying values and types using `console.log()` and `typeof`.
+- Asking for user input and confirmation with browser dialogs.
+
+## Important takeaways
+
+- JavaScript is dynamically typed; a variable can hold values of different types over time.
+- Prefer `const` by default and use `let` when reassignment is needed.
+- `prompt()` returns text, so numeric input often needs conversion and validation.
+- `+` can add numbers or concatenate strings; other arithmetic operators generally perform numeric conversion.
+- `=` assigns, `==` compares with coercion rules, and `===` compares without cross-type coercion.
+- Browser APIs and Node.js APIs are different; browser dialogs such as `alert()` are not available in a normal Node.js script by default.
+
+## Practice work
+
+The following practice was assigned or demonstrated, but completion has not yet been confirmed:
+
+- Create `Chapter-02/fundamentals.js` and run it with Node.js.
+- Practise customer information and inspect values with `typeof`.
+- Calculate a shopping-cart total using prices, quantities, discounts and delivery fees.
+- Predict and test type-conversion outputs.
+- Test strict and loose equality comparisons.
+- Complete the 12-question Chapter 2 knowledge check.
+
+## Next session
+
+Continue with **Chapter 2 — JavaScript Fundamentals**, starting from the next official lesson:
+
+- **Conditional branching: `if`, `?`** — https://javascript.info/ifelse
+
+Before moving on, revisit any unclear topics from today's lessons, especially type conversion, operator behaviour and comparisons.
+
 ## 2026-10-15
 
 ### What I Learned
